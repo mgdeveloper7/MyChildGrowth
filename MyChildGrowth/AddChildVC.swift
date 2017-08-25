@@ -13,11 +13,14 @@ class AddChildVC: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var outerScreenImageView : UIImageView!
+    @IBOutlet weak var dateView : DateView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        dateView.buildView()
+        dateView.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {

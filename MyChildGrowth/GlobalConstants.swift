@@ -25,6 +25,9 @@ class GlobalConstants: NSObject {
     
     static var writingDark = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
     static var writingLight = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+    
+    static var dateViewShade = UIColor(red: 198/255, green: 233/255, blue: 245/255, alpha: 0.8)
+
 
 
 }

@@ -1,0 +1,6 @@
+framework module Pods_MyChildGrowth {
+  umbrella header "Pods-MyChildGrowth-umbrella.h"
+
+  export *
+  module * { export * }
+}
