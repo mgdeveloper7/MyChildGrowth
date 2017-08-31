@@ -36,29 +36,37 @@ class DateView: UIView {
         xPos = Int(dateLabel.frame.size.width)
         dateIconOuterButton = UIButton(frame: CGRect(x: xPos, y: yPos , width: 30, height: labelHeight))
         dateIconOuterButton.backgroundColor = GlobalConstants.dateViewShade
-        dateIconOuterButton.addTarget(self, action: #selector(calendarPressed), for: .touchUpInside)
-
+        dateIconOuterButton.addTarget(self, action: #selector(calendarButtonPressed), for: UIControlEvents.touchUpInside)
+        dateIconOuterButton.isUserInteractionEnabled = true
+        dateIconOuterButton.isEnabled = true
+        
         self.addSubview(dateIconOuterButton)
         
         /** Date icon  */
         
-        let imageName = "calendar-icon"
-        let image = UIImage(named: imageName)
-        
-        xPos = Int(dateIconOuterButton.frame.origin.x) + 5
-        yPos = 5
-        
-        dateIcon = UIImageView(frame: CGRect(x: xPos , y: yPos , width: 20, height: 20))
-        dateIcon.image = image
-        
+//        let imageName = "calendar-icon"
+//        let image = UIImage(named: imageName)
+//        
+//        xPos = Int(dateIconOuterButton.frame.origin.x) + 5
+//        yPos = 5
+//        
+//        dateIcon = UIImageView(frame: CGRect(x: xPos , y: yPos , width: 20, height: 20))
+//        dateIcon.image = image
+//        
 //        self.addSubview(dateIcon)
+//        
+//        yPos = yPos + Int(dateIcon.frame.size.height)
+        
+        // Resize view
+        self.frame =  CGRect(x: self.frame.origin.x , y: self.frame.origin.y , width: self.frame.width, height: CGFloat(yPos))
 
     }
     
     // MARK:  Button Press methods
 
-    func calendarPressed(sender : UIButton) {
-
+    //func calendarButtonPressed(_ sender: Any) {
+    func calendarButtonPressed(sender:UIButton!) {
         NSLog("Calendar pressed")
     }
+    
 }

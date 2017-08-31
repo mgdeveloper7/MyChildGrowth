@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  MyChildGrowth
+
+  Created by Mark Gumbs on 30/08/2017.
+  Copyright © 2017 Mark Gumbs. All rights reserved.
+*/
+
+/**  General */
+
+"Male" = "Male";
+"Female"= "Female";
+
+/**  Add Child */
+
+"Add Child" = "Add Child";
+"Please ensure that all fields have been entered" = "Please ensure that all fields have been entered";

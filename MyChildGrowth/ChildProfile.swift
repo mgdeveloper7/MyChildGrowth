@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
-class ChildProfile: NSObject {
-
+class ChildProfile: Object {
     dynamic var id = ""
     dynamic var firstname = ""
     dynamic var surname = ""
     dynamic var sex = ""
-    dynamic var dateOfBirth = ""
+    dynamic var dateOfBirth : NSDate? = nil
     dynamic var weightAtBirth = 0.0
 
 }

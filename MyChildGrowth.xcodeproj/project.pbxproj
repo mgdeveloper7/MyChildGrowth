@@ -17,6 +17,11 @@
 		C006A21B1F4F03AA00C4A982 /* AddChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006A21A1F4F03AA00C4A982 /* AddChildVC.swift */; };
 		C006A21E1F4F0A9500C4A982 /* ChildProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006A21D1F4F0A9500C4A982 /* ChildProfile.swift */; };
 		C006A2211F4F0CF000C4A982 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006A2201F4F0CF000C4A982 /* DateView.swift */; };
+		C01876271F5220CE00CD77F3 /* ViewChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876261F5220CE00CD77F3 /* ViewChildVC.swift */; };
+		C01876291F5387DC00CD77F3 /* WeightSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876281F5387DC00CD77F3 /* WeightSliderView.swift */; };
+		C018762C1F56C80500CD77F3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C018762E1F56C80500CD77F3 /* Localizable.strings */; };
+		C01876301F56EB7100CD77F3 /* Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C018762F1F56EB7100CD77F3 /* Conversions.swift */; };
+		C01876321F56F7B700CD77F3 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876311F56F7B700CD77F3 /* DatePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		C006A21A1F4F03AA00C4A982 /* AddChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddChildVC.swift; sourceTree = "<group>"; };
 		C006A21D1F4F0A9500C4A982 /* ChildProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildProfile.swift; sourceTree = "<group>"; };
 		C006A2201F4F0CF000C4A982 /* DateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		C01876261F5220CE00CD77F3 /* ViewChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewChildVC.swift; sourceTree = "<group>"; };
+		C01876281F5387DC00CD77F3 /* WeightSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightSliderView.swift; sourceTree = "<group>"; };
+		C018762D1F56C80500CD77F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C018762F1F56EB7100CD77F3 /* Conversions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversions.swift; sourceTree = "<group>"; };
+		C01876311F56F7B700CD77F3 /* DatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +97,7 @@
 				C006A2051F4DB99900C4A982 /* Assets.xcassets */,
 				C006A2071F4DB99900C4A982 /* LaunchScreen.storyboard */,
 				C006A20A1F4DB99900C4A982 /* Info.plist */,
+				C018762E1F56C80500CD77F3 /* Localizable.strings */,
 			);
 			path = MyChildGrowth;
 			sourceTree = "<group>";
@@ -94,8 +105,9 @@
 		C006A2101F4DBC4000C4A982 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C006A2191F4F038800C4A982 /* Add Child */,
 				C006A2111F4DBC6000C4A982 /* Child Selection */,
+				C01876251F52208100CD77F3 /* View Child */,
+				C006A2191F4F038800C4A982 /* Add Child */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -128,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				C006A2171F4DC0F600C4A982 /* GlobalConstants.swift */,
+				C018762F1F56EB7100CD77F3 /* Conversions.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -152,8 +165,18 @@
 			isa = PBXGroup;
 			children = (
 				C006A2201F4F0CF000C4A982 /* DateView.swift */,
+				C01876311F56F7B700CD77F3 /* DatePicker.swift */,
+				C01876281F5387DC00CD77F3 /* WeightSliderView.swift */,
 			);
 			name = "Reusable Views";
+			sourceTree = "<group>";
+		};
+		C01876251F52208100CD77F3 /* View Child */ = {
+			isa = PBXGroup;
+			children = (
+				C01876261F5220CE00CD77F3 /* ViewChildVC.swift */,
+			);
+			name = "View Child";
 			sourceTree = "<group>";
 		};
 		E832DA972843A70B3EF38A92 /* Frameworks */ = {
@@ -228,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C006A2091F4DB99900C4A982 /* LaunchScreen.storyboard in Resources */,
+				C018762C1F56C80500CD77F3 /* Localizable.strings in Resources */,
 				C006A2061F4DB99900C4A982 /* Assets.xcassets in Resources */,
 				C006A2041F4DB99900C4A982 /* Main.storyboard in Resources */,
 			);
@@ -278,7 +302,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -289,11 +313,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C006A2211F4F0CF000C4A982 /* DateView.swift in Sources */,
+				C01876271F5220CE00CD77F3 /* ViewChildVC.swift in Sources */,
 				C006A2131F4DBD1100C4A982 /* ChildSelectionVC.swift in Sources */,
 				C006A21E1F4F0A9500C4A982 /* ChildProfile.swift in Sources */,
 				C006A21B1F4F03AA00C4A982 /* AddChildVC.swift in Sources */,
 				C006A2181F4DC0F600C4A982 /* GlobalConstants.swift in Sources */,
+				C01876301F56EB7100CD77F3 /* Conversions.swift in Sources */,
 				C006A1FF1F4DB99900C4A982 /* AppDelegate.swift in Sources */,
+				C01876291F5387DC00CD77F3 /* WeightSliderView.swift in Sources */,
+				C01876321F56F7B700CD77F3 /* DatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +342,14 @@
 				C006A2081F4DB99900C4A982 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C018762E1F56C80500CD77F3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C018762D1F56C80500CD77F3 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -459,6 +495,7 @@
 				C006A20F1F4DB99900C4A982 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

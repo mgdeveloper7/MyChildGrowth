@@ -28,6 +28,9 @@ class GlobalConstants: NSObject {
     
     static var dateViewShade = UIColor(red: 198/255, green: 233/255, blue: 245/255, alpha: 0.8)
 
-
+    static var weightAndHeightSliderColour = UIColor(red: 255/255, green: 249/255, blue: 242/255, alpha: 1.0)
+    static var datePickerColour = UIColor(red: 255/255, green: 249/255, blue: 242/255, alpha: 1.0)
+    static var datePickerToolbarColour = UIColor(red: 237/255, green: 230/255, blue: 222/255, alpha: 1.0)
+    
 
 }

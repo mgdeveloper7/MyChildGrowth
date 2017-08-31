@@ -7,24 +7,33 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ChildSelectionVC: UIViewController {
-
     
     // MARK: Outlets
     
     @IBOutlet weak var outerScreenImageView : UIImageView!
     @IBOutlet weak var childSelectionLabel : UILabel!
     @IBOutlet weak var buttonPodView : UIScrollView!
-//    @IBOutlet weak var addChildButton : UIButton!
-
+    
+    var childProfiles = try! Realm().objects(ChildProfile.self)
+    var selectedChildProfile = ChildProfile()
+    
+   // var selectedChildProfile = ChildProfile.
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         setupScreen()
         setupColourScheme()
         createChildButtons()
+        
+        // Show the documents directory incase we need to debug
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        print(documentsUrl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +49,12 @@ class ChildSelectionVC: UIViewController {
             
              
         }
+        
+        if (segue.identifier == "ViewChildSegue") {
+            let vc:ViewChildVC = segue.destination as! ViewChildVC
+            vc.selectedChildProfile = selectedChildProfile
+        }
+
         
     }
 
@@ -59,6 +74,14 @@ class ChildSelectionVC: UIViewController {
         
     }
     
+    func refreshScreen() {
+        
+        // TODO:
+        
+        childProfiles = try! Realm().objects(ChildProfile.self)
+        createChildButtons()
+
+    }
     func setupColourScheme () {
         
 //        childSelectionLabel.backgroundColor = GlobalConstants.podDark
@@ -71,46 +94,58 @@ class ChildSelectionVC: UIViewController {
     func createChildButtons () {
     
         let buttonWidth = 150
-        let buttonHeight = 50
+        let buttonHeight = 40
         let xPos = (Int(buttonPodView.frame.width) / 2) - (buttonWidth/2)
         var yPos = 10
         
-        for i in 1 ..< 3  {
-    
-            let btn: UIButton = UIButton(frame: CGRect(x: Int(xPos), y: yPos , width: buttonWidth, height: buttonHeight))
-            btn.backgroundColor = UIColor.gray
-            btn.setTitle("Child " + String(i), for: .normal)
-            btn.addTarget(self, action: #selector(childButtonPressed), for: .touchUpInside)
-            
-            btn.tag = i
-            btn.layer.cornerRadius = 5
-            
-            buttonPodView.addSubview(btn)
-            //btn.center = buttonPodView.center
+        print(childProfiles)
+        
+        if childProfiles.count > 0 {
+            for i in 1 ..< childProfiles.count  {
+        
+                let childProfile = childProfiles[i]
+                
+                let btn: UIButton = UIButton(frame: CGRect(x: Int(xPos), y: yPos , width: buttonWidth, height: buttonHeight))
+                btn.backgroundColor = UIColor.gray
+                btn.setTitle(childProfile.firstname, for: .normal)
+                btn.addTarget(self, action: #selector(childButtonPressed), for: .touchUpInside)
+                
+                btn.tag = i
+                btn.layer.cornerRadius = 5
+                
+                buttonPodView.addSubview(btn)
+                //btn.center = buttonPodView.center
 
-            yPos = yPos + buttonHeight + 10
+                yPos = yPos + buttonHeight + 10
+            }
+
         }
-
-//        // Add an 'Add child button'
+        
+        // Add an 'Add child button'
         let addChildButton: UIButton = UIButton(frame: CGRect(x: Int(xPos), y: yPos+10 , width: buttonWidth, height: buttonHeight))
         addChildButton.backgroundColor = UIColor.lightGray
-        addChildButton.setTitle("Add Child", for: .normal)
+        addChildButton.setTitle(NSLocalizedString("Add Child", comment: ""), for: .normal)
         addChildButton.addTarget(self, action: #selector(childButtonPressed), for: .touchUpInside)
         
         addChildButton.tag = 10
         addChildButton.layer.cornerRadius = 5
         buttonPodView.addSubview(addChildButton)
-
-        //buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: CGFloat(yPos + 20))
         
+        //buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: CGFloat(yPos + 20))
+
     }
  
     // MARK: Button pressed
 
     func childButtonPressed(sender: UIButton!) {
-        let btnsendtag: UIButton = sender
-        if btnsendtag.tag == 10 {
+        let btnSendTag: UIButton = sender
+        
+        if btnSendTag.tag == 10 {
             addChild()
+        }
+        else {
+            selectedChildProfile = childProfiles[btnSendTag.tag]
+            viewChild()
         }
     }
     
@@ -121,4 +156,13 @@ class ChildSelectionVC: UIViewController {
         self.performSegue(withIdentifier: "AddChildSegue", sender: self)
     }
     
+    func viewChild () {
+        
+        self.performSegue(withIdentifier: "ViewChildSegue", sender: self)
+    }
+
+    
+    // MARK: Realm Related methous
+    
+
 }
