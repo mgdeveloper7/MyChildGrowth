@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AddChildVC: UIViewController, WeightSliderViewDelegate, DatePickerDelegate {
+class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDelegate, DatePickerDelegate {
 
     // MARK: Outlets
     
@@ -19,8 +19,8 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, DatePickerDelegate
     @IBOutlet weak var firstname : UITextField!
     @IBOutlet weak var surname : UITextField!
     @IBOutlet weak var sexSegmentedControl : UISegmentedControl!
-    @IBOutlet weak var dateView : DateView!
-    @IBOutlet weak var weightAtBirthButton : UIButton!
+    @IBOutlet weak var dateView : ButtonIconView!
+    @IBOutlet weak var weightView : ButtonIconView!
 
     @IBOutlet weak var saveButton : UIButton!
 
@@ -34,9 +34,14 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, DatePickerDelegate
         
         setupScreen()
         
-        dateView.buildView()
+        dateView.buildView(iconImageName: "calendar-icon", withTag: 1)
+        dateView.delegate = self
         dateView.layer.cornerRadius = 5
-       // dateView.isUserInteractionEnabled = false
+
+        weightView.buildView(iconImageName: "weight-icon", withTag: 2)
+        weightView.delegate = self
+        weightView.layer.cornerRadius = 5
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,8 +65,11 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, DatePickerDelegate
     
     func saveChildToRealm() {
         
+       // let utils = Utilities()
+        
         let childProfile = ChildProfile()
         
+        childProfile.id = Utilities.getUniqueIdBasedOnDate()
         childProfile.firstname = self.firstname.text!
         childProfile.surname = self.surname.text!
         childProfile.dateOfBirth = self.selectedDateOfBirth
@@ -102,7 +110,7 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, DatePickerDelegate
             return false
         }
 
-        if weightAtBirthButton.titleLabel?.text! == "" {
+        if weightView.buttonLabel?.text! == "" {
             return false
         }
 
@@ -120,38 +128,7 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, DatePickerDelegate
 
         outerChildDetailView.isUserInteractionEnabled = false
 
-        var datePickerView = DatePicker(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 170))
-        
-        datePickerView.delegate = self
-        datePickerView.buildPicker()
-        let datePickerViewYPos = self.view.frame.size.height - datePickerView.frame.size.height
-        
-        datePickerView.frame = CGRect(x: datePickerView.frame.origin.x, y: datePickerViewYPos , width: datePickerView.frame.size.width , height: datePickerView.frame.size.height)
-        self.view.addSubview(datePickerView);
-        
-    }
-    
-    
-    @IBAction func weighButtonPressed(_ sender: AnyObject) {
-
-        outerChildDetailView.isUserInteractionEnabled = false
-        
-        var weightSliderView = WeightSliderView(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 200))
-
-        weightSliderView.delegate = self
-        weightSliderView.buildView()
-
-        // we should know the height of the slider view now, so reposition the view to the bottom
-        
-        let weightSliderViewYPos = self.view.frame.size.height - weightSliderView.frame.size.height
-        
-        weightSliderView.frame = CGRect(x: weightSliderView.frame.origin.x, y: weightSliderViewYPos , width: weightSliderView.frame.size.width , height: weightSliderView.frame.size.height)
-        
-     //   let window = UIApplication.shared.keyWindow!
-      //  window.addSubview(weightSliderView)
-
-        self.view.addSubview(weightSliderView);
-
+        showPicker(buttonIconViewTag: sender.tag)
     }
     
 
@@ -172,19 +149,68 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, DatePickerDelegate
         }
     }
 
+    func showDatePicker() {
+        
+        outerChildDetailView.isUserInteractionEnabled = false
+        
+        var datePickerView = DatePicker(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 170))
+        
+        datePickerView.delegate = self
+        datePickerView.buildPicker()
+        let datePickerViewYPos = self.view.frame.size.height - datePickerView.frame.size.height
+        
+        datePickerView.frame = CGRect(x: datePickerView.frame.origin.x, y: datePickerViewYPos , width: datePickerView.frame.size.width , height: datePickerView.frame.size.height)
+        self.view.addSubview(datePickerView);
+
+    }
+    
+    func showWeightPicker() {
+
+        outerChildDetailView.isUserInteractionEnabled = false
+        
+        var weightSliderView = WeightSliderView(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 200))
+        
+        weightSliderView.delegate = self
+        weightSliderView.buildView()
+        
+        // we should know the height of the slider view now, so reposition the view to the bottom
+        
+        let weightSliderViewYPos = self.view.frame.size.height - weightSliderView.frame.size.height
+        
+        weightSliderView.frame = CGRect(x: weightSliderView.frame.origin.x, y: weightSliderViewYPos , width: weightSliderView.frame.size.width , height: weightSliderView.frame.size.height)
+        
+        //   let window = UIApplication.shared.keyWindow!
+        //  window.addSubview(weightSliderView)
+        
+        self.view.addSubview(weightSliderView);
+
+    }
     
     // MARK:  WeightSliderViewDelegate Methods
 
     func setWeight(kgWeight : Int) {
         
         selectedWeightAtBirth = kgWeight
-        weightAtBirthButton.titleLabel?.text! = String(kgWeight)
+        weightView.buttonLabel.text = String(kgWeight)
     }
     
     func enableScreen() {
         outerChildDetailView.isUserInteractionEnabled = true
     }
     
+    // MARK:  ButtonIconViewDelegate Methods
+    
+    func showPicker(buttonIconViewTag : Int) {
+        
+        if buttonIconViewTag == 1 {
+            showDatePicker()
+        }
+        else {
+            showWeightPicker()
+        }
+        
+    }
+
     // MARK:  DatePickerDelegate Methods
 
     func setDate(selectedDate : NSDate) {
@@ -194,7 +220,7 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, DatePickerDelegate
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
 
-        dateView.dateLabel.text = formatter.string(from: selectedDate as Date)
+        dateView.buttonLabel.text = formatter.string(from: selectedDate as Date) + " kg"
     }
 
 }

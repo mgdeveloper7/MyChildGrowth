@@ -38,6 +38,18 @@ class ViewChildVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: Segue Setup
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if (segue.identifier == "HeightChartSegue") {
+            
+            let vc:HeightChartVC = segue.destination as! HeightChartVC
+            vc.selectedChildProfile = selectedChildProfile
+            
+        }
+    }
+
     func setupScreen() {
         
         outerChildDetailView.layer.cornerRadius = 10.0
@@ -99,6 +111,8 @@ class ViewChildVC: UIViewController {
     }
 
     @IBAction func heightButtonPressed(_ sender: AnyObject) {
+        
+        self.performSegue(withIdentifier: "HeightChartSegue", sender: self)
         
     }
 
