@@ -29,6 +29,11 @@
 		C01876411F58D63B00CD77F3 /* ButtonIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876401F58D63B00CD77F3 /* ButtonIconView.swift */; };
 		C01876431F59ACDA00CD77F3 /* HeightSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876421F59ACDA00CD77F3 /* HeightSliderView.swift */; };
 		C01876451F5A909300CD77F3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876441F5A909300CD77F3 /* Utilities.swift */; };
+		C01876471F5AF7D900CD77F3 /* HeightReviewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876461F5AF7D900CD77F3 /* HeightReviewListCell.swift */; };
+		C018764A1F5BD84E00CD77F3 /* DataCreationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876491F5BD84E00CD77F3 /* DataCreationHelper.swift */; };
+		C018764C1F5BD97600CD77F3 /* ChildVaccineTaken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C018764B1F5BD97600CD77F3 /* ChildVaccineTaken.swift */; };
+		C018764F1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C018764E1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift */; };
+		C01876511F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876501F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +63,11 @@
 		C01876401F58D63B00CD77F3 /* ButtonIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonIconView.swift; sourceTree = "<group>"; };
 		C01876421F59ACDA00CD77F3 /* HeightSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeightSliderView.swift; sourceTree = "<group>"; };
 		C01876441F5A909300CD77F3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C01876461F5AF7D900CD77F3 /* HeightReviewListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeightReviewListCell.swift; sourceTree = "<group>"; };
+		C01876491F5BD84E00CD77F3 /* DataCreationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCreationHelper.swift; sourceTree = "<group>"; };
+		C018764B1F5BD97600CD77F3 /* ChildVaccineTaken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildVaccineTaken.swift; sourceTree = "<group>"; };
+		C018764E1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaccineTimePeriodLookup.swift; sourceTree = "<group>"; };
+		C01876501F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaccineDescriptionLookup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +114,7 @@
 			children = (
 				C006A2151F4DC0B100C4A982 /* AppDelegate */,
 				C006A2141F4DC09B00C4A982 /* StoryBoards */,
+				C01876481F5BD82400CD77F3 /* Helper Classes */,
 				C006A21C1F4F09C800C4A982 /* Model */,
 				C006A21F1F4F0C7B00C4A982 /* Reusable Views */,
 				C006A2101F4DBC4000C4A982 /* ViewControllers */,
@@ -172,9 +183,11 @@
 		C006A21C1F4F09C800C4A982 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C018764D1F5BDA1A00CD77F3 /* Lookup */,
 				C006A21D1F4F0A9500C4A982 /* ChildProfile.swift */,
 				C018763C1F58C89200CD77F3 /* Height.swift */,
 				C018763E1F58C96400CD77F3 /* Weight.swift */,
+				C018764B1F5BD97600CD77F3 /* ChildVaccineTaken.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -204,8 +217,26 @@
 				C018763A1F58887900CD77F3 /* HeightChartVC.swift */,
 				C01876361F5868BC00CD77F3 /* AddHeightVC.swift */,
 				C01876381F58874900CD77F3 /* HeightReviewListVC.swift */,
+				C01876461F5AF7D900CD77F3 /* HeightReviewListCell.swift */,
 			);
 			name = Height;
+			sourceTree = "<group>";
+		};
+		C01876481F5BD82400CD77F3 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C01876491F5BD84E00CD77F3 /* DataCreationHelper.swift */,
+			);
+			name = "Helper Classes";
+			sourceTree = "<group>";
+		};
+		C018764D1F5BDA1A00CD77F3 /* Lookup */ = {
+			isa = PBXGroup;
+			children = (
+				C018764E1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift */,
+				C01876501F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift */,
+			);
+			name = Lookup;
 			sourceTree = "<group>";
 		};
 		E832DA972843A70B3EF38A92 /* Frameworks */ = {
@@ -350,13 +381,18 @@
 				C01876391F58874900CD77F3 /* HeightReviewListVC.swift in Sources */,
 				C006A21E1F4F0A9500C4A982 /* ChildProfile.swift in Sources */,
 				C01876431F59ACDA00CD77F3 /* HeightSliderView.swift in Sources */,
+				C018764A1F5BD84E00CD77F3 /* DataCreationHelper.swift in Sources */,
 				C006A21B1F4F03AA00C4A982 /* AddChildVC.swift in Sources */,
 				C01876451F5A909300CD77F3 /* Utilities.swift in Sources */,
 				C006A2181F4DC0F600C4A982 /* GlobalConstants.swift in Sources */,
 				C01876301F56EB7100CD77F3 /* Conversions.swift in Sources */,
 				C006A1FF1F4DB99900C4A982 /* AppDelegate.swift in Sources */,
 				C01876291F5387DC00CD77F3 /* WeightSliderView.swift in Sources */,
+				C01876511F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift in Sources */,
 				C01876321F56F7B700CD77F3 /* DatePicker.swift in Sources */,
+				C01876471F5AF7D900CD77F3 /* HeightReviewListCell.swift in Sources */,
+				C018764F1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift in Sources */,
+				C018764C1F5BD97600CD77F3 /* ChildVaccineTaken.swift in Sources */,
 				C01876371F5868BC00CD77F3 /* AddHeightVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
