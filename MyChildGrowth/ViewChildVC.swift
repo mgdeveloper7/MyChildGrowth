@@ -42,6 +42,13 @@ class ViewChildVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
+        if (segue.identifier == "InnoculationsSegue") {
+            
+            let vc:InnoculationsVC = segue.destination as! InnoculationsVC
+            vc.selectedChildProfile = selectedChildProfile
+            
+        }
+
         if (segue.identifier == "HeightChartSegue") {
             
             let vc:HeightChartVC = segue.destination as! HeightChartVC
@@ -52,11 +59,13 @@ class ViewChildVC: UIViewController {
 
     func setupScreen() {
         
+        // Buttons
         outerChildDetailView.layer.cornerRadius = 10.0
         outerChildDetailView.layer.borderWidth = 1
         outerChildDetailView.layer.borderColor = UIColor.gray.cgColor
         outerChildDetailView.clipsToBounds = true
 
+        // Child details and image
         self.firstname.text = selectedChildProfile.firstname
         self.surname.text = selectedChildProfile.surname
  
@@ -108,6 +117,8 @@ class ViewChildVC: UIViewController {
 
     @IBAction func innoculationsButtonPressed(_ sender: AnyObject) {
 
+        self.performSegue(withIdentifier: "InnoculationsSegue", sender: self)
+        
     }
 
     @IBAction func heightButtonPressed(_ sender: AnyObject) {

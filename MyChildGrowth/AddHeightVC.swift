@@ -19,6 +19,8 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
     @IBOutlet weak var surname : UILabel!
     
     @IBOutlet weak var outerButtonView : UIView!
+    
+    @IBOutlet weak var lastHeightAndDate : UILabel!
     @IBOutlet weak var dateView : ButtonIconView!
     @IBOutlet weak var heightView : ButtonIconView!
     @IBOutlet weak var saveButton : UIButton!
@@ -33,12 +35,13 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
         // Do any additional setup after loading the view.
         
         setupScreen()
+        getLastHeight()
         
-        dateView.buildView(iconImageName: "calendar-icon", withTag: 1)
+        dateView.buildView(width: 105, height: 30, iconImageName: "calendar-icon", withTag: 1)
         dateView.delegate = self
         dateView.layer.cornerRadius = 5
         
-        heightView.buildView(iconImageName: "height-icon", withTag: 2)
+        heightView.buildView(width: 105, height: 30, iconImageName: "height-icon", withTag: 2)
         heightView.delegate = self
         heightView.layer.cornerRadius = 5
 
@@ -62,8 +65,46 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
         saveButton.layer.borderWidth = 1
         saveButton.layer.borderColor = UIColor.lightGray.cgColor
         
+        // Child details and image
+        self.firstname.text = selectedChildProfile.firstname
+        self.surname.text = selectedChildProfile.surname
+        
+        var imageName = ""
+        
+        if selectedChildProfile.sex == "Male" {
+            imageName = "boy-icon"
+        }
+        else {
+            imageName = "girl-icon"
+        }
+        
+        let image = UIImage(named: imageName)
+        genderImage.image = image
+
     }
 
+    func getLastHeight() {
+    
+        let predicate = NSPredicate(format: "childProfileId == %@", selectedChildProfile.id)
+        var heights = try! Realm().objects(Height.self).filter(predicate)
+        heights = heights.sorted(byKeyPath: "dateMeasured", ascending: false)
+        
+        // TODO:  Use Guard Let
+        
+        if heights.count > 0 {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            
+            let latestHeight = heights.first
+            let lastDate = formatter.string(from: latestHeight?.dateMeasured as! Date)
+
+            lastHeightAndDate.text = "Last height: " + String(format: "%.2f", (latestHeight?.value)!) + " m" + " on " + lastDate
+        }
+        else {
+            lastHeightAndDate.text = ""
+        }
+        
+    }
     
     // MARK:  Button Methods
     @IBAction func backButtonPressed(_ sender: AnyObject) {
@@ -94,11 +135,11 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
         
         // TODO:  Check if a duplicate (date)
  
-        if dateView.buttonLabel?.text! == "" {
+        if selectedHeightDate == nil {
             return false
         }
         
-        if heightView.buttonLabel?.text! == "" {
+        if selectedHeight == nil {
             return false
         }
 

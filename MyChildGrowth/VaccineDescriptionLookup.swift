@@ -9,9 +9,10 @@
 import UIKit
 import RealmSwift
 
-class VaccineDescriptionLookup: NSObject {
+class VaccineDescriptionLookup: Object {
 
     dynamic var id = ""
+    dynamic var sequence = 0
     dynamic var timePeriodLookupId = ""
     dynamic var shortDescriptionKey = ""
     dynamic var longDescriptionKey = ""

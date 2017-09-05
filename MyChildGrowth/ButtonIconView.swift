@@ -27,10 +27,8 @@ class ButtonIconView: UIView {
     // MARK: Other variables
     var buttonIconViewTag : Int!
     
-    func buildView (iconImageName : String, withTag : Int) {
+    func buildView (width : Int, height : Int, iconImageName : String, withTag : Int) {
         
-        let labelWidth = 120
-        let labelHeight = 30
         var xPos = 0
         let yPos = 0
         
@@ -38,13 +36,13 @@ class ButtonIconView: UIView {
         
         /** Label Padding */
         
-        let padding = UILabel(frame: CGRect(x: xPos, y: yPos , width: 7, height: labelHeight))
+        let padding = UILabel(frame: CGRect(x: xPos, y: yPos , width: 7, height: height))
         self.addSubview(padding)
         xPos = 7
         
         /** Button Label */
         
-        buttonLabel = UILabel(frame: CGRect(x: xPos, y: yPos , width: labelWidth, height: labelHeight))
+        buttonLabel = UILabel(frame: CGRect(x: xPos, y: yPos , width: width, height: height))
         buttonLabel.backgroundColor = UIColor.white
         
         self.addSubview(buttonLabel)
@@ -52,7 +50,7 @@ class ButtonIconView: UIView {
         /** Button icon outer button */
         
         xPos = Int(buttonLabel.frame.size.width)
-        buttonIconOuterButton = UIButton(frame: CGRect(x: xPos, y: yPos , width: 30, height: labelHeight))
+        buttonIconOuterButton = UIButton(frame: CGRect(x: xPos, y: yPos , width: 30, height: height))
         buttonIconOuterButton.backgroundColor = GlobalConstants.dateViewShade
         buttonIconOuterButton.addTarget(self, action: #selector(buttonIconPressed), for: UIControlEvents.touchUpInside)
         

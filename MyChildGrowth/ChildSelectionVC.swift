@@ -13,10 +13,16 @@ class ChildSelectionVC: UIViewController {
     
     // MARK: Outlets
     
+    @IBOutlet weak var titleBar: UINavigationBar!
+    @IBOutlet weak var titleBarNavItem: UINavigationItem!
+    
     @IBOutlet weak var outerScreenImageView : UIImageView!
     @IBOutlet weak var childSelectionLabel : UILabel!
     @IBOutlet weak var buttonPodView : UIScrollView!
     
+    // Custom outlets
+    let customBarButtonAction = UIButton(type: .custom)
+
     var childProfiles = try! Realm().objects(ChildProfile.self)
     var selectedChildProfile = ChildProfile()
     
@@ -26,6 +32,8 @@ class ChildSelectionVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        createLookupTablesIfNotExist()
         
         setupScreen()
         setupColourScheme()
@@ -74,6 +82,18 @@ class ChildSelectionVC: UIViewController {
         
     }
     
+    func setRightBarButtonImage () {
+        
+        customBarButtonAction.setImage(UIImage(named: "Menu"), for: UIControlState.normal)
+ //       customBarButtonAction.addTarget(self, action: #selector(ParentWeatherVC.barBtnActionPressed(_:)), for: UIControlEvents.touchUpInside)
+        //button.frame = CGRectMake(0, 0, 53, 31)
+        customBarButtonAction.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        
+        let barButton = UIBarButtonItem(customView: customBarButtonAction)
+        titleBarNavItem.rightBarButtonItem = barButton
+    }
+
+    
     func refreshScreen() {
         
         // TODO:
@@ -94,14 +114,15 @@ class ChildSelectionVC: UIViewController {
     func createChildButtons () {
     
         let buttonWidth = 150
-        let buttonHeight = 40
+        let buttonHeight = 35
+        // Outer pod will be centered by autolayout.
         let xPos = (Int(buttonPodView.frame.width) / 2) - (buttonWidth/2)
         var yPos = 10
         
         print(childProfiles)
         
         if childProfiles.count > 0 {
-            for i in 1 ..< childProfiles.count  {
+            for i in 0 ..< childProfiles.count  {
         
                 let childProfile = childProfiles[i]
                 
@@ -133,6 +154,20 @@ class ChildSelectionVC: UIViewController {
         
         //buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: CGFloat(yPos + 20))
 
+    }
+    
+    func createLookupTablesIfNotExist() {
+        
+        let innoculationPeriods = try! Realm().objects(VaccineTimePeriodLookup.self)
+        
+        if innoculationPeriods.count == 0 {
+
+            let dataCreationHelper = DataCreationHelper()
+            dataCreationHelper.createVaccineTimePeriodsLookup()
+            dataCreationHelper.createVaccineDescriptionsLookup()
+            
+            
+        }
     }
  
     // MARK: Button pressed

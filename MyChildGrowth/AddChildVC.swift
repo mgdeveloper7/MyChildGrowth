@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDelegate, DatePickerDelegate {
+class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDelegate, DatePickerDelegate, UITextFieldDelegate {
 
     // MARK: Outlets
     
@@ -34,13 +34,21 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         
         setupScreen()
         
-        dateView.buildView(iconImageName: "calendar-icon", withTag: 1)
+        dateView.buildView(width: 120, height: 30, iconImageName: "calendar-icon", withTag: 1)
         dateView.delegate = self
         dateView.layer.cornerRadius = 5
 
-        weightView.buildView(iconImageName: "weight-icon", withTag: 2)
+        weightView.buildView(width: 120, height: 30, iconImageName: "weight-icon", withTag: 2)
         weightView.delegate = self
         weightView.layer.cornerRadius = 5
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
 
     }
 
@@ -61,6 +69,9 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         saveButton.layer.borderWidth = 1
         saveButton.layer.borderColor = UIColor.lightGray.cgColor
 
+        // Delegates
+        firstname.delegate = self
+        surname.delegate = self
     }
     
     func saveChildToRealm() {
@@ -118,6 +129,23 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         
     }
     
+
+    @IBAction func sexSegmentedControlChanged(_ sender: Any) {
+        view.endEditing(true)
+        
+        //        if segment.selectedSegmentIndex == 0 {
+        //        }
+
+
+    }
+
+    
+    // MARK:  Keyboard functions
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     // MARK:  Button Methods
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         // Dismiss view
@@ -171,7 +199,7 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         var weightSliderView = WeightSliderView(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 200))
         
         weightSliderView.delegate = self
-        weightSliderView.buildView()
+        weightSliderView.buildView(maxWeightValue: 10)
         
         // we should know the height of the slider view now, so reposition the view to the bottom
         
@@ -191,7 +219,7 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
     func setWeight(kgWeight : Int) {
         
         selectedWeightAtBirth = kgWeight
-        weightView.buttonLabel.text = String(kgWeight)
+        weightView.buttonLabel.text = String(kgWeight) + " kg"
     }
     
     func enableScreen() {
@@ -220,7 +248,12 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
 
-        dateView.buttonLabel.text = formatter.string(from: selectedDate as Date) + " kg"
+        dateView.buttonLabel.text = formatter.string(from: selectedDate as Date)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
 }

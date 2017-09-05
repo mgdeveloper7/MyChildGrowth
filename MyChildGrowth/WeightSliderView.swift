@@ -26,7 +26,7 @@ class WeightSliderView: UIView {
     var stonesTitle : UILabel!
     var poundsTitle : UILabel!
     
-    func buildView () {
+    func buildView (maxWeightValue : Int) {
 
         self.frame =  CGRect(x: 0 , y: self.frame.origin.y , width: self.frame.width, height: self.frame.height)
 
@@ -63,7 +63,7 @@ class WeightSliderView: UIView {
         let sliderWidth = Int(self.frame.size.width-50)
         xPos = Int((Int(self.frame.size.width) - sliderWidth) / 2)
 
-        buildScale(sliderWidth: sliderWidth, xPos: xPos, yPos: yPos, maxValue: 200)
+        buildScale(sliderWidth: sliderWidth, xPos: xPos, yPos: yPos, maxValue: maxWeightValue)
         
         yPos = yPos + 25
         
@@ -71,7 +71,7 @@ class WeightSliderView: UIView {
         
         weightSlider = UISlider(frame: CGRect(x: xPos, y: yPos , width: sliderWidth, height: 25))
         weightSlider.minimumValue = 0
-        weightSlider.maximumValue = 200
+        weightSlider.maximumValue = Float(maxWeightValue)
         weightSlider.isContinuous = true; // false makes it call only once you let go
         weightSlider.addTarget(self, action: #selector(sliderValueChanged), for: UIControlEvents.valueChanged)
 

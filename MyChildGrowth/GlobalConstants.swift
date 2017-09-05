@@ -32,5 +32,14 @@ class GlobalConstants: NSObject {
     static var datePickerColour = UIColor(red: 255/255, green: 249/255, blue: 242/255, alpha: 1.0)
     static var datePickerToolbarColour = UIColor(red: 237/255, green: 230/255, blue: 222/255, alpha: 1.0)
     
+    
+    // Tableview shading
+    struct TableViewAlternateShading {
+        static var Lighter = UIColor(red: 224/255, green: 218/255, blue: 210/255, alpha: 1.0)
+        static var Darker = UIColor(red: 181/255, green: 173/255, blue: 166/255, alpha: 1.0)
+       // static var Dummy = UIColor(red: 130/255, green: 127/255, blue: 120/255, alpha: 1.0)
+        static var Dummy = UIColor(red: 253/255, green: 249/255, blue: 247/255, alpha: 1.0)
+    }
+
 
 }

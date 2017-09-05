@@ -9,13 +9,13 @@
 import UIKit
 import RealmSwift
 
-class VaccineTimePeriodLookup: NSObject {
+class VaccineTimePeriodLookup: Object {
 
     dynamic var id = ""
-    dynamic var sequence = ""
+    dynamic var sequence = 0
     dynamic var weekDueDescriptionKey = ""
-    dynamic var weekFrom = ""
-    dynamic var weekTo = ""
+    dynamic var weekFrom = 0
+    dynamic var weekTo = 0
     dynamic var dummyPeriod = false
 
 }

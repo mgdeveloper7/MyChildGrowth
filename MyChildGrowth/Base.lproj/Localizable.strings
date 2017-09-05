@@ -15,3 +15,34 @@
 
 "Add Child" = "Add Child";
 "Please ensure that all fields have been entered" = "Please ensure that all fields have been entered";
+
+/** Red Book Immunisation descriptions */
+
+"8 weeks" = "8 weeks";
+"12 weeks" = "12 weeks";
+"16 weeks" = "16 weeks";
+"12 - 13 months" = "12 - 13 months";
+"3 years 4 months" = "3 years 4 months";
+
+"DTaP/IPV/Hib" = "DTaP/IPV/Hib";
+"PCV" = "PCV";
+"Rota" = "Rota";
+"MenC" = "MenC";
+"Hib/MenC" = "Hib/MenC";
+"MMR" = "MMR";
+"DTaP/IPV" = "DTaP/IPV";
+"dTaP/IPV" = "dTaP/IPV";
+
+"DTaP-Key" = "Diptheria, tetanus, acellular pertussis [whooping cough]";
+"dTaP-Key" = "Low dose Diptheria, tetanus, acellular pertussis [whooping cough]";
+"IPV-Key" = "Inactivated polio vaccine";
+"Hib-Key" = "Haemophilus influenzae b [Hib]";
+"MenC-Key" = "Meningococcal C";
+"Rota-Key" = "Rotavirus vaccine";
+"PCV-Key" = "Pneumococcal conjugate vaccine";
+"MMR-Key" = "Measles, mumps, rubella";
+
+"PRE-SCHOOL BOOSTER" = "PRE-SCHOOL BOOSTER";
+"Low-Dose-dTaP-Key" = "NOTE:  Can also be given low dose Diptheria (dTaP)";
+
+

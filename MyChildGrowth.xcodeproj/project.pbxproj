@@ -34,6 +34,10 @@
 		C018764C1F5BD97600CD77F3 /* ChildVaccineTaken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C018764B1F5BD97600CD77F3 /* ChildVaccineTaken.swift */; };
 		C018764F1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C018764E1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift */; };
 		C01876511F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876501F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift */; };
+		C01876531F5BE0E300CD77F3 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876521F5BE0E300CD77F3 /* RealmHelper.swift */; };
+		C01876561F5C71FE00CD77F3 /* InnoculationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876551F5C71FE00CD77F3 /* InnoculationsVC.swift */; };
+		C01876581F5D5CFC00CD77F3 /* InnoculationsTimePeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876571F5D5CFC00CD77F3 /* InnoculationsTimePeriodCell.swift */; };
+		C018765A1F5D897D00CD77F3 /* InnoculationDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876591F5D897D00CD77F3 /* InnoculationDescriptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +72,10 @@
 		C018764B1F5BD97600CD77F3 /* ChildVaccineTaken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildVaccineTaken.swift; sourceTree = "<group>"; };
 		C018764E1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaccineTimePeriodLookup.swift; sourceTree = "<group>"; };
 		C01876501F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaccineDescriptionLookup.swift; sourceTree = "<group>"; };
+		C01876521F5BE0E300CD77F3 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		C01876551F5C71FE00CD77F3 /* InnoculationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnoculationsVC.swift; sourceTree = "<group>"; };
+		C01876571F5D5CFC00CD77F3 /* InnoculationsTimePeriodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnoculationsTimePeriodCell.swift; sourceTree = "<group>"; };
+		C01876591F5D897D00CD77F3 /* InnoculationDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnoculationDescriptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +130,6 @@
 				C006A2051F4DB99900C4A982 /* Assets.xcassets */,
 				C006A2071F4DB99900C4A982 /* LaunchScreen.storyboard */,
 				C006A20A1F4DB99900C4A982 /* Info.plist */,
-				C018762E1F56C80500CD77F3 /* Localizable.strings */,
 			);
 			path = MyChildGrowth;
 			sourceTree = "<group>";
@@ -130,6 +137,7 @@
 		C006A2101F4DBC4000C4A982 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C01876541F5C71DB00CD77F3 /* Innoculations */,
 				C01876351F58689400CD77F3 /* Height */,
 				C006A2111F4DBC6000C4A982 /* Child Selection */,
 				C01876251F52208100CD77F3 /* View Child */,
@@ -168,6 +176,7 @@
 				C006A2171F4DC0F600C4A982 /* GlobalConstants.swift */,
 				C018762F1F56EB7100CD77F3 /* Conversions.swift */,
 				C01876441F5A909300CD77F3 /* Utilities.swift */,
+				C018762E1F56C80500CD77F3 /* Localizable.strings */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -226,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				C01876491F5BD84E00CD77F3 /* DataCreationHelper.swift */,
+				C01876521F5BE0E300CD77F3 /* RealmHelper.swift */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -237,6 +247,16 @@
 				C01876501F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift */,
 			);
 			name = Lookup;
+			sourceTree = "<group>";
+		};
+		C01876541F5C71DB00CD77F3 /* Innoculations */ = {
+			isa = PBXGroup;
+			children = (
+				C01876551F5C71FE00CD77F3 /* InnoculationsVC.swift */,
+				C01876571F5D5CFC00CD77F3 /* InnoculationsTimePeriodCell.swift */,
+				C01876591F5D897D00CD77F3 /* InnoculationDescriptionCell.swift */,
+			);
+			name = Innoculations;
 			sourceTree = "<group>";
 		};
 		E832DA972843A70B3EF38A92 /* Frameworks */ = {
@@ -386,6 +406,9 @@
 				C01876451F5A909300CD77F3 /* Utilities.swift in Sources */,
 				C006A2181F4DC0F600C4A982 /* GlobalConstants.swift in Sources */,
 				C01876301F56EB7100CD77F3 /* Conversions.swift in Sources */,
+				C01876531F5BE0E300CD77F3 /* RealmHelper.swift in Sources */,
+				C01876581F5D5CFC00CD77F3 /* InnoculationsTimePeriodCell.swift in Sources */,
+				C01876561F5C71FE00CD77F3 /* InnoculationsVC.swift in Sources */,
 				C006A1FF1F4DB99900C4A982 /* AppDelegate.swift in Sources */,
 				C01876291F5387DC00CD77F3 /* WeightSliderView.swift in Sources */,
 				C01876511F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift in Sources */,
@@ -394,6 +417,7 @@
 				C018764F1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift in Sources */,
 				C018764C1F5BD97600CD77F3 /* ChildVaccineTaken.swift in Sources */,
 				C01876371F5868BC00CD77F3 /* AddHeightVC.swift in Sources */,
+				C018765A1F5D897D00CD77F3 /* InnoculationDescriptionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
