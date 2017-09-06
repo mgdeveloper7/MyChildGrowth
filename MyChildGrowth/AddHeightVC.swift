@@ -197,7 +197,7 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
             var heightSliderView = HeightSliderView(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 200))
             
             heightSliderView.delegate = self
-            heightSliderView.buildView()
+            heightSliderView.buildView(maxHeightValue: 1.5)
             
             // we should know the height of the slider view now, so reposition the view to the bottom
             

@@ -10,7 +10,7 @@ import UIKit
 
 protocol WeightSliderViewDelegate
 {
-    func setWeight(kgWeight : Int)
+    func setWeight(kgWeight : Float)
     func enableScreen()
 }
 
@@ -47,12 +47,14 @@ class WeightSliderView: UIView {
         mainValueTitle.font = UIFont.boldSystemFont(ofSize: mainValueTitle.font.pointSize)
         self.addSubview(mainValueTitle)
 
+        // Left hand side
         stonesTitle = UILabel(frame: CGRect(x: 10, y: yPos , width: titleWidth, height: 30))
         stonesTitle.text = "0 st"
         stonesTitle.textAlignment = NSTextAlignment.center
         stonesTitle.font = stonesTitle.font.withSize(12)
         self.addSubview(stonesTitle )
 
+        // Right hand side
         poundsTitle = UILabel(frame: CGRect(x: mainValueTitleXPos + 120, y: yPos , width: titleWidth, height: 30))
         poundsTitle.text = "0 lb"
         poundsTitle.textAlignment = NSTextAlignment.center
@@ -65,7 +67,7 @@ class WeightSliderView: UIView {
 
         buildScale(sliderWidth: sliderWidth, xPos: xPos, yPos: yPos, maxValue: maxWeightValue)
         
-        yPos = yPos + 25
+        yPos = yPos + 27
         
         /** Slider */
         
@@ -93,20 +95,32 @@ class WeightSliderView: UIView {
         // TODO:  Tap gesture to up the slider value by 1
         self.addSubview(plusSymbol)
         
-        yPos = yPos + Int(weightSlider.frame.height) + 10
+        yPos = yPos + Int(weightSlider.frame.height) + 15
         
         
         /** Ok button */
         
-        let okBtnWidth = 40
-        let okBtnXPos = (Int(self.frame.width) / 2) - (okBtnWidth / 2)
-        let okBtn: UIButton = UIButton(frame: CGRect(x: okBtnXPos, y: yPos , width: okBtnWidth, height: 20))
+        let okBtnWidth = 70
+        let okBtnXPos = 20
+        let okBtn: UIButton = UIButton(frame: CGRect(x: okBtnXPos, y: yPos , width: okBtnWidth, height: 25))
         okBtn.backgroundColor = UIColor.gray
         okBtn.setTitle("Ok", for: .normal)
         okBtn.addTarget(self, action: #selector(okButtonPressed), for: .touchUpInside)
         okBtn.layer.cornerRadius = 5
         
         self.addSubview(okBtn)
+        
+        /** Cancel button */
+        
+        let cancelBtnWidth = 70
+        let cancelBtnXPos = Int(self.frame.width) - cancelBtnWidth - 20
+        let cancelBtn: UIButton = UIButton(frame: CGRect(x: cancelBtnXPos, y: yPos , width: cancelBtnWidth, height: 25))
+        cancelBtn.backgroundColor = UIColor.gray
+        cancelBtn.setTitle("Cancel", for: .normal)
+        cancelBtn.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
+        cancelBtn.layer.cornerRadius = 5
+        
+        self.addSubview(cancelBtn)
 
         yPos = yPos + Int(okBtn.frame.height) + 10
         
@@ -117,23 +131,22 @@ class WeightSliderView: UIView {
 
     func buildScale(sliderWidth : Int, xPos : Int, yPos : Int, maxValue : Int) {
         
-        let strideValue = maxValue / 10
+        let strideValue = sliderWidth / 20
         var lastXPos = 0
         
+        let firstScaleMark = UILabel(frame: CGRect(x: lastXPos+10, y: yPos , width: 10, height: 10 ))
+        firstScaleMark.text = "0"
+        firstScaleMark.sizeToFit()
+        firstScaleMark.textColor = UIColor.lightGray
+        
+        self.addSubview(firstScaleMark)
+
         for i in stride(from: 0, to: sliderWidth, by: strideValue) {
             let xPos = xPos + i
             let scaleMark = UILabel(frame: CGRect(x: xPos, y: yPos , width: 10, height: 10 ))
 
-            if i==0 {
-                scaleMark.text = "0"
-            }
-            else if i == sliderWidth {
-                scaleMark.text = String(maxValue)
-            }
-            else {
-                scaleMark.text = "."
-            }
-
+            scaleMark.text = "."
+            scaleMark.textAlignment = .center
             scaleMark.sizeToFit()
             scaleMark.textColor = UIColor.lightGray
             self.addSubview(scaleMark)
@@ -141,23 +154,33 @@ class WeightSliderView: UIView {
             lastXPos = xPos
         }
         
-        let scaleMark = UILabel(frame: CGRect(x: lastXPos, y: yPos , width: 10, height: 10 ))
-        scaleMark.text = String(maxValue)
-        scaleMark.sizeToFit()
-        scaleMark.textColor = UIColor.lightGray
-        self.addSubview(scaleMark)
+        let lastScaleMark = UILabel(frame: CGRect(x: lastXPos+10, y: yPos , width: 10, height: 10 ))
+        lastScaleMark.text = String(maxValue)
+        lastScaleMark.sizeToFit()
+        lastScaleMark.textColor = UIColor.lightGray
+        self.addSubview(lastScaleMark)
     }
     
     func sliderValueChanged(sender: UISlider) {
         // round the slider position to the nearest index of the numbers array
-        let index = (Int)(weightSlider!.value);
+        let sliderWeightValue = (Float)(weightSlider!.value);
 
         let conv = Conversions()
         
-        mainValueTitle.text = String(index) + " kg"
-        poundsTitle.text = conv.kgToPounds(kgWeight: (Int)(weightSlider!.value)) + " lb"
+        //mainValueTitle.text = String(sliderWeightValue) + " kg"
+        mainValueTitle.text =  String(format: "%.2f", sliderWeightValue) + " kg"
         
-        let stonesAndPounds = conv.kgToStones(kgWeight: (Int)(weightSlider!.value))
+//        poundsTitle.text = conv.kgToPounds(kgWeight: sliderWeightValue) + " lb"
+
+        let poundsAndOunces = conv.kgToPounds(kgWeight: sliderWeightValue)
+        let pounds1 = floor(Double(poundsAndOunces)!)
+        let ouncesFraction = Double(poundsAndOunces)?.truncatingRemainder(dividingBy: 1)
+        let ounces = floor(ouncesFraction! * 16)
+        
+        poundsTitle.text = String(Int(pounds1)) + " lb " + String(Int(ounces)) + " oz"
+       
+        
+        let stonesAndPounds = conv.kgToStones(kgWeight: sliderWeightValue)
         
         let stones = floor(Double(stonesAndPounds)!)
         let poundsFraction = Double(stonesAndPounds)?.truncatingRemainder(dividingBy: 1)
@@ -169,11 +192,19 @@ class WeightSliderView: UIView {
     // MARK:  Button Methods
     @IBAction func okButtonPressed(_ sender: AnyObject) {
         
-        delegate?.setWeight(kgWeight: (Int)(weightSlider!.value))
+        delegate?.setWeight(kgWeight:Float(weightSlider!.value))
         delegate?.enableScreen()
         
         // Dismiss view
         self.removeFromSuperview()
     }
-
+    
+    @IBAction func cancelButtonPressed(_ sender: AnyObject) {
+        
+        delegate?.enableScreen()
+        
+        // Dismiss view
+        self.removeFromSuperview()
+    }
+    
 }

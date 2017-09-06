@@ -25,7 +25,7 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
     @IBOutlet weak var saveButton : UIButton!
 
     var selectedDateOfBirth : NSDate!
-    var selectedWeightAtBirth : Int!
+    var selectedWeightAtBirth : Float!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +51,7 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         view.addGestureRecognizer(tap)
 
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -199,7 +200,7 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         var weightSliderView = WeightSliderView(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 200))
         
         weightSliderView.delegate = self
-        weightSliderView.buildView(maxWeightValue: 10)
+        weightSliderView.buildView(maxWeightValue: 8)
         
         // we should know the height of the slider view now, so reposition the view to the bottom
         
@@ -216,10 +217,10 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
     
     // MARK:  WeightSliderViewDelegate Methods
 
-    func setWeight(kgWeight : Int) {
+    func setWeight(kgWeight : Float) {
         
         selectedWeightAtBirth = kgWeight
-        weightView.buttonLabel.text = String(kgWeight) + " kg"
+        weightView.buttonLabel.text = String(format: "%.2f", kgWeight) + " kg"
     }
     
     func enableScreen() {

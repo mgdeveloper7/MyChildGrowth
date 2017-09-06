@@ -13,5 +13,6 @@ class InnoculationDescriptionCell: UITableViewCell {
     // MARK: Outlets
     @IBOutlet weak var selectedLabel : UILabel!
     @IBOutlet weak var shortDescription : UILabel!
+    @IBOutlet weak var vaccineTakenImage : UIImageView!
 
 }

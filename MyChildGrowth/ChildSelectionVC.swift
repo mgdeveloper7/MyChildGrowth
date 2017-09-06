@@ -37,11 +37,22 @@ class ChildSelectionVC: UIViewController {
         
         setupScreen()
         setupColourScheme()
-        createChildButtons()
         
         // Show the documents directory incase we need to debug
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         print(documentsUrl)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+  //      refreshButtons()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // On screen startup, refresh buttons at this point since auto layout
+        // would have positioned the buttonViewPod
+        
+        refreshButtons()
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,7 +105,7 @@ class ChildSelectionVC: UIViewController {
     }
 
     
-    func refreshScreen() {
+    func refreshButtons() {
         
         // TODO:
         
@@ -120,6 +131,14 @@ class ChildSelectionVC: UIViewController {
         var yPos = 10
         
         print(childProfiles)
+        
+        // Loop through all the buttons in the buttonPodView and remove them
+        
+        for v in buttonPodView.subviews {
+            if v is UIButton{
+                v.removeFromSuperview()
+            }
+        }
         
         if childProfiles.count > 0 {
             for i in 0 ..< childProfiles.count  {

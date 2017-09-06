@@ -25,6 +25,7 @@ class InnoculationsVC: UIViewController {
     @IBOutlet weak var innoculationDescriptionView : UIView!
     @IBOutlet weak var innoculationDescriptionPeriod : UILabel!
     @IBOutlet weak var innoculationDescription : UILabel!
+    @IBOutlet weak var vaccineTakenSegmentedControl : UISegmentedControl!
 
     var selectedChildProfile = ChildProfile()
 
@@ -33,7 +34,9 @@ class InnoculationsVC: UIViewController {
     
     var innoculationPeriods : Results<VaccineTimePeriodLookup>!
     var innoculationsForTimePeriod : Results<VaccineDescriptionLookup>!
-
+    var vaccineTakenForTimePeriod : Results<ChildVaccineTaken>!
+    var lastSelectedDescriptionIndexPath : NSIndexPath!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -115,6 +118,125 @@ class InnoculationsVC: UIViewController {
         innoculationDescriptionPeriod.text = ""
         innoculationDescription.text = ""
     }
+    
+    
+    func saveVaccineTakenRecord(transaction : String) {
+        
+        if transaction == "ADD" {
+            NSLog("Adding vaccine")
+
+            let childVaccineTaken = ChildVaccineTaken()
+            childVaccineTaken.id = Utilities.getUniqueIdBasedOnDate()
+            childVaccineTaken.childProfileId = selectedChildProfile.id
+            childVaccineTaken.vaccineTimePeriodId = selectedTimePeriod.id
+            childVaccineTaken.vaccineDescriptionId = selectedInnoculationForTimePeriod.id
+            
+            do {
+                // Get the default Realm
+                let realm = try Realm()
+                
+                // TODO:  detect success
+                try! realm.write {
+                    realm.add(childVaccineTaken)
+                }
+                
+            } catch let error as NSError {
+                print("Error saving childVaccineTaken to Realm - " + error.description)
+            }
+        }
+
+        if transaction == "DELETE" {
+            
+            // Remove the record found earlier when we selected
+            if vaccineTakenForTimePeriod.count > 0 {
+                
+                NSLog("Deleting vaccine")
+                do {
+                    // Get the default Realm
+                    let realm = try Realm()
+                    
+                    // TODO:  detect success
+                    try! realm.write {
+                        realm.delete(vaccineTakenForTimePeriod)
+                    }
+                    
+                } catch let error as NSError {
+                    print("Error deleting childVaccineTaken from Realm - " + error.description)
+                }
+
+            }
+            else {
+                NSLog("No vaccine found")
+                
+            }
+            
+        }
+        
+        innoculationsTableView.reloadData()
+        highlightLastSelectedDescription()
+    }
+    
+    
+    func checkIfVaccineTakenForTimePeriod() {
+        
+        // Find the single record which equates to the vaccine taken.
+        
+        let predicate = NSPredicate(format: "childProfileId == %@ and vaccineTimePeriodId == %@ and vaccineDescriptionId == %@", selectedChildProfile.id, selectedTimePeriod.id, selectedInnoculationForTimePeriod.id)
+        
+        vaccineTakenForTimePeriod = try! Realm().objects(ChildVaccineTaken.self).filter(predicate)
+        
+        if vaccineTakenForTimePeriod.count > 0 {
+            vaccineTakenSegmentedControl.selectedSegmentIndex = 0  // Yes
+        }
+        else {
+            vaccineTakenSegmentedControl.selectedSegmentIndex = 1  // No
+        }
+
+    }
+    
+    func highlightLastSelectedDescription() {
+        
+        // Highlight the last description cell we clicked on before the tableview reload
+        
+        if let cell = (innoculationsTableView.cellForRow(at: lastSelectedDescriptionIndexPath as IndexPath) as? InnoculationDescriptionCell) {
+            
+            cell.contentView.backgroundColor = UIColor.gray
+            cell.selectedLabel.backgroundColor = UIColor.red
+
+        }
+
+    }
+    
+    func deselectLastSelectedDescription() {
+        
+        if lastSelectedDescriptionIndexPath != nil {
+            if let cell = (innoculationsTableView.cellForRow(at: lastSelectedDescriptionIndexPath as IndexPath) as? InnoculationDescriptionCell) {
+
+                cell.selectedLabel.backgroundColor = UIColor.clear
+                cell.contentView.backgroundColor = UIColor.clear
+                
+            }
+        }
+        
+    }
+   
+    
+    // MARK:  Segmented Control methods
+    @IBAction func vaccineTakenChanged(_ sender: Any) {
+        
+        var realmTransaction = ""
+        
+        if vaccineTakenSegmentedControl.selectedSegmentIndex == 0 {
+            realmTransaction = "ADD"
+        }
+        else {
+            realmTransaction = "DELETE"
+        }
+        
+        saveVaccineTakenRecord(transaction: realmTransaction)
+    }
+    
+    
 
     // MARK:  Button Methods
     @IBAction func backButtonPressed(_ sender: AnyObject) {
@@ -143,8 +265,7 @@ extension InnoculationsVC : UITableViewDataSource {
         return count
     }
     
-    
-//    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var cellHeight = 0.0
         
@@ -193,13 +314,12 @@ extension InnoculationsVC : UITableViewDataSource {
  //               cell.backgroundColor = UIColor.gray
             }
             else {
+                cell.selectedLabel.backgroundColor = UIColor.clear
                 if (indexPath.row % 2 == 0) {
                     cell.backgroundColor = GlobalConstants.TableViewAlternateShading.Darker
-                    cell.selectedLabel.backgroundColor = GlobalConstants.TableViewAlternateShading.Darker
                 }
                 else {
                     cell.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
-                    cell.selectedLabel.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
                 }
             }
             
@@ -213,16 +333,25 @@ extension InnoculationsVC : UITableViewDataSource {
             let cell:InnoculationDescriptionCell = self.innoculationsTableView.dequeueReusableCell(withIdentifier: "InnoculationDescriptionCellID") as! InnoculationDescriptionCell
             
             cell.shortDescription.text = desc.shortDescriptionKey
+            cell.vaccineTakenImage.isHidden = true
+            
+            // Show icon if vaccine taken
+            let predicate = NSPredicate(format: "childProfileId == %@ and vaccineTimePeriodId == %@ and vaccineDescriptionId == %@", selectedChildProfile.id, selectedTimePeriod.id, desc.id)
+            
+            let tmpVaccineTakenForTimePeriod = try! Realm().objects(ChildVaccineTaken.self).filter(predicate)
+
+            if tmpVaccineTakenForTimePeriod.count > 0 {
+                cell.vaccineTakenImage.isHidden = false
+            }
             
             // Colour shading
             
+            cell.selectedLabel.backgroundColor = UIColor.clear
             if (indexPath.row % 2 == 0) {
                 cell.backgroundColor = GlobalConstants.TableViewAlternateShading.Darker
-                cell.selectedLabel.backgroundColor = GlobalConstants.TableViewAlternateShading.Darker
             }
             else {
                 cell.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
-                cell.selectedLabel.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
             }
 
             
@@ -261,10 +390,15 @@ extension InnoculationsVC : UITableViewDelegate {
             selectedInnoculationForTimePeriod = innoculationsForTimePeriod[indexPath.row]
             populateInnoculationDescriptionForTimePeriod()
             
+            checkIfVaccineTakenForTimePeriod()
+            deselectLastSelectedDescription()
+
             if let cell = (tableView.cellForRow(at: indexPath) as? InnoculationDescriptionCell) {
                 
                 cell.contentView.backgroundColor = UIColor.gray
                 cell.selectedLabel.backgroundColor = UIColor.red
+                
+                lastSelectedDescriptionIndexPath = indexPath as NSIndexPath
             }
         }
 
