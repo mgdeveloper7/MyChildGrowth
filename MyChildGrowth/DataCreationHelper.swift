@@ -119,6 +119,7 @@ class DataCreationHelper: NSObject {
                 // 8 Weeks
                 
                 let vaccineDescriptionLookup1 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup1.id = "8w-" + NSLocalizedString("DTaP/IPV/Hib", comment: "")
                 vaccineDescriptionLookup1.sequence = 1
                 vaccineDescriptionLookup1.timePeriodLookupId = NSLocalizedString("8 weeks", comment: "")
                 vaccineDescriptionLookup1.shortDescriptionKey = NSLocalizedString("DTaP/IPV/Hib", comment: "")
@@ -129,6 +130,7 @@ class DataCreationHelper: NSObject {
                 realm.add(vaccineDescriptionLookup1)
                 
                 let vaccineDescriptionLookup2 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup2.id = "8w-" + NSLocalizedString("PCV", comment: "")
                 vaccineDescriptionLookup2.sequence = 2
                 vaccineDescriptionLookup2.timePeriodLookupId = NSLocalizedString("8 weeks", comment: "")
                 vaccineDescriptionLookup2.shortDescriptionKey = NSLocalizedString("PCV", comment: "")
@@ -137,6 +139,7 @@ class DataCreationHelper: NSObject {
                 realm.add(vaccineDescriptionLookup2)
                 
                 let vaccineDescriptionLookup3 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup3.id = "8w-" + NSLocalizedString("Rota", comment: "")
                 vaccineDescriptionLookup3.sequence = 3
                 vaccineDescriptionLookup3.timePeriodLookupId = NSLocalizedString("8 weeks", comment: "")
                 vaccineDescriptionLookup3.shortDescriptionKey = NSLocalizedString("Rota", comment: "")
@@ -147,6 +150,7 @@ class DataCreationHelper: NSObject {
                 // 12 Weeks
                 
                 let vaccineDescriptionLookup4 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup4.id = "12w-" + NSLocalizedString("DTaP/IPV/Hib", comment: "")
                 vaccineDescriptionLookup4.sequence = 4
                 vaccineDescriptionLookup4.timePeriodLookupId = NSLocalizedString("12 weeks", comment: "")
                 vaccineDescriptionLookup4.shortDescriptionKey = NSLocalizedString("DTaP/IPV/Hib", comment: "")
@@ -157,6 +161,7 @@ class DataCreationHelper: NSObject {
                 realm.add(vaccineDescriptionLookup4)
 
                 let vaccineDescriptionLookup5 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup5.id = "12w-" + NSLocalizedString("MenC", comment: "")
                 vaccineDescriptionLookup5.sequence = 5
                 vaccineDescriptionLookup5.timePeriodLookupId = NSLocalizedString("12 weeks", comment: "")
                 vaccineDescriptionLookup5.shortDescriptionKey = NSLocalizedString("MenC", comment: "")
@@ -165,6 +170,7 @@ class DataCreationHelper: NSObject {
                 realm.add(vaccineDescriptionLookup5)
 
                 let vaccineDescriptionLookup6 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup6.id = "12w-" + NSLocalizedString("Rota", comment: "")
                 vaccineDescriptionLookup6.sequence = 6
                 vaccineDescriptionLookup6.timePeriodLookupId = NSLocalizedString("12 weeks", comment: "")
                 vaccineDescriptionLookup6.shortDescriptionKey = NSLocalizedString("Rota", comment: "")
@@ -174,6 +180,7 @@ class DataCreationHelper: NSObject {
                 
                 // 16 weeks
                 let vaccineDescriptionLookup7 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup7.id = "16w-" + NSLocalizedString("DTaP/IPV/Hib", comment: "")
                 vaccineDescriptionLookup7.sequence = 7
                 vaccineDescriptionLookup7.timePeriodLookupId = NSLocalizedString("16 weeks", comment: "")
                 vaccineDescriptionLookup7.shortDescriptionKey = NSLocalizedString("DTaP/IPV/Hib", comment: "")
@@ -184,6 +191,7 @@ class DataCreationHelper: NSObject {
                 realm.add(vaccineDescriptionLookup7)
                 
                 let vaccineDescriptionLookup8 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup8.id = "16w-" + NSLocalizedString("PCV", comment: "")
                 vaccineDescriptionLookup8.sequence = 8
                 vaccineDescriptionLookup8.timePeriodLookupId = NSLocalizedString("16 weeks", comment: "")
                 vaccineDescriptionLookup8.shortDescriptionKey = NSLocalizedString("PCV", comment: "")
@@ -193,6 +201,7 @@ class DataCreationHelper: NSObject {
                 
                 // Between 12 and 13 months
                 let vaccineDescriptionLookup9 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup9.id = "1213m-" + NSLocalizedString("Hib/MenC", comment: "")
                 vaccineDescriptionLookup9.sequence = 9
                 vaccineDescriptionLookup9.timePeriodLookupId = NSLocalizedString("12 - 13 months", comment: "")
                 vaccineDescriptionLookup9.shortDescriptionKey = NSLocalizedString("Hib/MenC", comment: "")
@@ -202,6 +211,7 @@ class DataCreationHelper: NSObject {
                 realm.add(vaccineDescriptionLookup9)
                 
                 let vaccineDescriptionLookup10 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup10.id = "1213m-" + NSLocalizedString("MMR", comment: "")
                 vaccineDescriptionLookup10.sequence = 10
                 vaccineDescriptionLookup10.timePeriodLookupId = NSLocalizedString("12 - 13 months", comment: "")
                 vaccineDescriptionLookup10.shortDescriptionKey = NSLocalizedString("MMR", comment: "")
@@ -210,6 +220,7 @@ class DataCreationHelper: NSObject {
                 realm.add(vaccineDescriptionLookup10)
                 
                 let vaccineDescriptionLookup11 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup11.id = "1213m-" + NSLocalizedString("PCV", comment: "")
                 vaccineDescriptionLookup11.sequence = 11
                 vaccineDescriptionLookup11.timePeriodLookupId = NSLocalizedString("12 - 13 months", comment: "")
                 vaccineDescriptionLookup11.shortDescriptionKey = NSLocalizedString("PCV", comment: "")
@@ -219,6 +230,7 @@ class DataCreationHelper: NSObject {
                 
                 // 3 years, 4 months
                 let vaccineDescriptionLookup12 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup12.id = "3y4m-" + NSLocalizedString("DTaP/IPV", comment: "")
                 vaccineDescriptionLookup12.sequence = 12
                 vaccineDescriptionLookup12.timePeriodLookupId = NSLocalizedString("3 years 4 months", comment: "")
                 vaccineDescriptionLookup12.shortDescriptionKey = NSLocalizedString("DTaP/IPV", comment: "")
@@ -230,6 +242,7 @@ class DataCreationHelper: NSObject {
                 realm.add(vaccineDescriptionLookup12)
  
                 let vaccineDescriptionLookup13 = VaccineDescriptionLookup()
+                vaccineDescriptionLookup13.id = "3y4m-" + NSLocalizedString("MMR", comment: "")
                 vaccineDescriptionLookup13.sequence = 13
                 vaccineDescriptionLookup13.timePeriodLookupId = NSLocalizedString("3 years 4 months", comment: "")
                 vaccineDescriptionLookup13.shortDescriptionKey = NSLocalizedString("MMR", comment: "")
