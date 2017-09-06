@@ -13,7 +13,7 @@ class Conversions: NSObject {
     // Create a singleton so that the variables can be called outside of the class
 //    static let sharedInstance = Conversions()
 
-    func kgToStones(kgWeight : Int) -> String {
+    func kgToStones(kgWeight : Float) -> String {
         
         let conversionFormula = 0.157473
         
@@ -21,13 +21,32 @@ class Conversions: NSObject {
         
     }
     
-    func kgToPounds(kgWeight : Int) -> String {
+    func kgToPounds(kgWeight : Float) -> String {
         
         let conversionFormula = 2.20462
         
-        return String(Int (Double(kgWeight) * conversionFormula) )
+   //     return String(Int (Double(kgWeight) * conversionFormula) )
+        return String(Double(kgWeight) * conversionFormula)
         
     }
+    
+    func metersToFeet(meters : Float) -> String {
+        
+        let conversionFormula = 3.28084
+        
+        return String(Double(meters) * conversionFormula)
+        
+    }
+    
+    func feetFractionToInches(feetFraction : Double) -> String {
+        
+        let conversionFormula = Double(12)
+        
+        return String(floor(feetFraction * conversionFormula))
+        
+    }
+
+
 
 //    func stoneFractionToPounds(poundsFraction : Double) -> String {
 //        
