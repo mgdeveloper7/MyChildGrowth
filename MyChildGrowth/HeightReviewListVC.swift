@@ -68,6 +68,8 @@ class HeightReviewListVC: UIViewController {
     
     func getHeightsForChild() {
         
+        // TODO: Add to HeightHelper class
+        
         let predicate = NSPredicate(format: "childProfileId == %@", selectedChildProfile.id)
         heights = try! Realm().objects(Height.self).filter(predicate)
         heights = heights!.sorted(byKeyPath: "dateMeasured", ascending: false)

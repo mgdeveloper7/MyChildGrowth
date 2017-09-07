@@ -24,6 +24,8 @@ class HeightSliderView: UIView {
     var heightSlider : UISlider!
     var mainValueTitle : UILabel!
     var feetTitle : UILabel!
+    var minusSymbol : UIImageView!
+    var plusSymbol : UIImageView!
     
     func buildView (maxHeightValue : Double) {
         
@@ -56,7 +58,7 @@ class HeightSliderView: UIView {
         
         
         yPos = Int(mainValueTitle.frame.size.height + 5)
-        let sliderWidth = Int(self.frame.size.width-50)
+        let sliderWidth = Int(self.frame.size.width-70)
         xPos = Int((Int(self.frame.size.width) - sliderWidth) / 2)
         
         buildScale(sliderWidth: sliderWidth, xPos: xPos, yPos: yPos, maxValue: Float(maxHeightValue))
@@ -74,19 +76,27 @@ class HeightSliderView: UIView {
         self.addSubview(heightSlider)
         
         /** - symbol at the beginning of slider */
-        let minusSymbol = UIImageView(frame: CGRect(x: xPos - 20, y: yPos+5 , width: 15, height: 15))
+        minusSymbol = UIImageView(frame: CGRect(x: xPos - 27, y: yPos+5 , width: 20, height: 20))
         let minusImage = UIImage(named: "minus-icon")
         minusSymbol.image = minusImage
         
-        // TODO:  Tap gesture to up the slider value by 1
+        let minusImageTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HeightSliderView.plusOrMinusImageTapped))
+
+        minusSymbol.isUserInteractionEnabled = true
+        minusSymbol.addGestureRecognizer(minusImageTapGestureRecognizer)
+
         self.addSubview(minusSymbol)
         
         /** + symbol at the end of slider */
-        let plusSymbol =  UIImageView(frame: CGRect(x: xPos + sliderWidth + 5, y: yPos+5 , width: 15, height: 15))
+        plusSymbol =  UIImageView(frame: CGRect(x: xPos + sliderWidth + 6, y: yPos+5 , width: 20, height: 20))
         let plusImage = UIImage(named: "plus-icon")
         plusSymbol.image = plusImage
         
-        // TODO:  Tap gesture to up the slider value by 1
+        let plusImageTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HeightSliderView.plusOrMinusImageTapped))
+        
+        plusSymbol.isUserInteractionEnabled = true
+        plusSymbol.addGestureRecognizer(plusImageTapGestureRecognizer)
+
         self.addSubview(plusSymbol)
         
         yPos = yPos + Int(heightSlider.frame.height) + 15
@@ -156,12 +166,20 @@ class HeightSliderView: UIView {
         self.addSubview(lastScaleMark)
     }
     
+    
+    // MARK:  Slider Methods
+    
     func sliderValueChanged(sender: UISlider) {
+        changeSliderValues()
+    }
+    
+    func changeSliderValues() {
+        
         // round the slider position to the nearest index of the numbers array
         let sliderWeightValue = (Float)(heightSlider!.value);
         
         let conv = Conversions()
-
+        
         mainValueTitle.text =  String(format: "%.2f", sliderWeightValue) + " m"
         
         let feetAndInches = conv.metersToFeet(meters: heightSlider!.value)
@@ -171,10 +189,27 @@ class HeightSliderView: UIView {
         
         let inches = floor(inchesFraction! * 12)
         feetTitle.text = String(Int(feet)) + " ft " + String(Int(inches)) + " in"
-
-//        let inches = conv.feetFractionToInches(feetFraction: inchesFraction!)
-//        feetTitle.text = String(Int(feet)) + " ft " + String(describing: Int(inches)) + " in"
+        
+        //        let inches = conv.feetFractionToInches(feetFraction: inchesFraction!)
+        //        feetTitle.text = String(Int(feet)) + " ft " + String(describing: Int(inches)) + " in"
+        
     }
+
+    func plusOrMinusImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        if tappedImage == self.minusSymbol {
+            heightSlider.value = heightSlider.value - 0.01
+        }
+        
+        if tappedImage == self.plusSymbol {
+            heightSlider.value = heightSlider.value + 0.01
+        }
+
+        changeSliderValues()
+    }
+    
     
     // MARK:  Button Methods
     @IBAction func okButtonPressed(_ sender: AnyObject) {

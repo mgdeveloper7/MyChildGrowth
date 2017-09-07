@@ -25,6 +25,7 @@ class InnoculationsVC: UIViewController {
     @IBOutlet weak var innoculationDescriptionView : UIView!
     @IBOutlet weak var innoculationDescriptionPeriod : UILabel!
     @IBOutlet weak var innoculationDescription : UILabel!
+    @IBOutlet weak var vaccineTakenLabel : UILabel!
     @IBOutlet weak var vaccineTakenSegmentedControl : UISegmentedControl!
 
     var selectedChildProfile = ChildProfile()
@@ -91,6 +92,9 @@ class InnoculationsVC: UIViewController {
         innoculationDescriptionView.layer.borderColor = UIColor.gray.cgColor
         innoculationDescriptionView.alpha = 0.6
         
+        vaccineTakenLabel.isHidden = true
+        vaccineTakenSegmentedControl.isHidden = true
+
     }
 
     func getInnoculationPeriods() {
@@ -111,12 +115,20 @@ class InnoculationsVC: UIViewController {
         
         innoculationDescriptionPeriod.text = selectedInnoculationForTimePeriod.timePeriodLookupId
         innoculationDescription.text = selectedInnoculationForTimePeriod.longDescriptionKey
+        
+        if selectedInnoculationForTimePeriod.longDescriptionKey.characters.count > 0 {
+            vaccineTakenLabel.isHidden = false
+            vaccineTakenSegmentedControl.isHidden = false
+        }
     }
 
     func clearInnoculationDescriptionForTimePeriod() {
         
         innoculationDescriptionPeriod.text = ""
         innoculationDescription.text = ""
+        
+        vaccineTakenLabel.isHidden = true
+        vaccineTakenSegmentedControl.isHidden = true
     }
     
     

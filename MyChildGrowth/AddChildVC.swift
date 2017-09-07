@@ -34,16 +34,8 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         
         setupScreen()
         
-        dateView.buildView(width: 120, height: 30, iconImageName: "calendar-icon", withTag: 1)
-        dateView.delegate = self
-        dateView.layer.cornerRadius = 5
-
-        weightView.buildView(width: 120, height: 30, iconImageName: "weight-icon", withTag: 2)
-        weightView.delegate = self
-        weightView.layer.cornerRadius = 5
-        
         //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddChildVC.dismissKeyboard))
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         //tap.cancelsTouchesInView = false
@@ -52,7 +44,22 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // On screen startup, refresh buttons at this point since auto layout
+        // would have positioned the buttonViewPod
+        
+        dateView.buildView(width: 120, height: 30, iconImageName: "calendar-icon", withTag: 1)
+        dateView.delegate = self
+        dateView.layer.cornerRadius = 5
+        
+        weightView.buildView(width: 120, height: 30, iconImageName: "weight-icon", withTag: 2)
+        weightView.delegate = self
+        weightView.layer.cornerRadius = 5
 
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

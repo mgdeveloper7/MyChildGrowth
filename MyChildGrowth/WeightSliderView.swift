@@ -25,6 +25,8 @@ class WeightSliderView: UIView {
     var mainValueTitle : UILabel!
     var stonesTitle : UILabel!
     var poundsTitle : UILabel!
+    var minusSymbol : UIImageView!
+    var plusSymbol : UIImageView!
     
     func buildView (maxWeightValue : Int) {
 
@@ -62,7 +64,7 @@ class WeightSliderView: UIView {
         self.addSubview(poundsTitle )
        
         yPos = Int(mainValueTitle.frame.size.height + 5)
-        let sliderWidth = Int(self.frame.size.width-50)
+        let sliderWidth = Int(self.frame.size.width-70)
         xPos = Int((Int(self.frame.size.width) - sliderWidth) / 2)
 
         buildScale(sliderWidth: sliderWidth, xPos: xPos, yPos: yPos, maxValue: maxWeightValue)
@@ -80,19 +82,27 @@ class WeightSliderView: UIView {
         self.addSubview(weightSlider)
 
         /** - symbol at the beginning of slider */
-        let minusSymbol = UIImageView(frame: CGRect(x: xPos - 20, y: yPos+5 , width: 15, height: 15))
+        minusSymbol = UIImageView(frame: CGRect(x: xPos - 27, y: yPos+5 , width: 20, height: 20))
         let minusImage = UIImage(named: "minus-icon")
         minusSymbol.image = minusImage
 
-        // TODO:  Tap gesture to up the slider value by 1
+        let minusImageTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WeightSliderView.plusOrMinusImageTapped))
+        
+        minusSymbol.isUserInteractionEnabled = true
+        minusSymbol.addGestureRecognizer(minusImageTapGestureRecognizer)
+
         self.addSubview(minusSymbol)
         
         /** + symbol at the end of slider */
-        let plusSymbol =  UIImageView(frame: CGRect(x: xPos + sliderWidth + 5, y: yPos+5 , width: 15, height: 15))
+        plusSymbol =  UIImageView(frame: CGRect(x: xPos + sliderWidth + 6, y: yPos+5 , width: 20, height: 20))
         let plusImage = UIImage(named: "plus-icon")
         plusSymbol.image = plusImage
 
-        // TODO:  Tap gesture to up the slider value by 1
+        let plusImageTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WeightSliderView.plusOrMinusImageTapped))
+        
+        plusSymbol.isUserInteractionEnabled = true
+        plusSymbol.addGestureRecognizer(plusImageTapGestureRecognizer)
+
         self.addSubview(plusSymbol)
         
         yPos = yPos + Int(weightSlider.frame.height) + 15
@@ -161,34 +171,55 @@ class WeightSliderView: UIView {
         self.addSubview(lastScaleMark)
     }
     
+    // MARK:  Slider Methods
+    
     func sliderValueChanged(sender: UISlider) {
+        changeSliderValues()
+    }
+    
+    func changeSliderValues() {
         // round the slider position to the nearest index of the numbers array
         let sliderWeightValue = (Float)(weightSlider!.value);
-
+        
         let conv = Conversions()
         
         //mainValueTitle.text = String(sliderWeightValue) + " kg"
         mainValueTitle.text =  String(format: "%.2f", sliderWeightValue) + " kg"
         
-//        poundsTitle.text = conv.kgToPounds(kgWeight: sliderWeightValue) + " lb"
-
+        //        poundsTitle.text = conv.kgToPounds(kgWeight: sliderWeightValue) + " lb"
+        
         let poundsAndOunces = conv.kgToPounds(kgWeight: sliderWeightValue)
         let pounds1 = floor(Double(poundsAndOunces)!)
         let ouncesFraction = Double(poundsAndOunces)?.truncatingRemainder(dividingBy: 1)
         let ounces = floor(ouncesFraction! * 16)
         
         poundsTitle.text = String(Int(pounds1)) + " lb " + String(Int(ounces)) + " oz"
-       
+        
         
         let stonesAndPounds = conv.kgToStones(kgWeight: sliderWeightValue)
         
         let stones = floor(Double(stonesAndPounds)!)
         let poundsFraction = Double(stonesAndPounds)?.truncatingRemainder(dividingBy: 1)
-
+        
         let pounds = floor(poundsFraction! * 14)
         stonesTitle.text = String(Int(stones)) + " st " + String(Int(pounds)) + " lb"
     }
-    
+
+    func plusOrMinusImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        if tappedImage == self.minusSymbol {
+            weightSlider.value = weightSlider.value - 0.01
+        }
+        
+        if tappedImage == self.plusSymbol {
+            weightSlider.value = weightSlider.value + 0.01
+        }
+        
+        changeSliderValues()
+    }
+
     // MARK:  Button Methods
     @IBAction func okButtonPressed(_ sender: AnyObject) {
         
