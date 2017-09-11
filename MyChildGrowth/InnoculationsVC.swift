@@ -13,18 +13,17 @@ class InnoculationsVC: UIViewController {
 
     // MARK: Outlets
     @IBOutlet weak var outerScreenImageView : UIImageView!
-    @IBOutlet weak var outerChildDetailView : UIView!
-    @IBOutlet weak var genderImage : UIImageView!
-    @IBOutlet weak var firstname : UILabel!
-    @IBOutlet weak var surname : UILabel!
+    @IBOutlet weak var outerChildDetailView : ChildNameView!
 
     @IBOutlet weak var timelineTableView : UITableView!
     @IBOutlet weak var innoculationsOuterView : UIView!
+    @IBOutlet weak var innoculationSelectionInstructions : UILabel!
     @IBOutlet weak var innoculationsTableView : UITableView!
 
     @IBOutlet weak var innoculationDescriptionView : UIView!
     @IBOutlet weak var innoculationDescriptionPeriod : UILabel!
     @IBOutlet weak var innoculationDescription : UILabel!
+    @IBOutlet weak var innoculationDescriptionInstructions : UILabel!
     @IBOutlet weak var vaccineTakenLabel : UILabel!
     @IBOutlet weak var vaccineTakenSegmentedControl : UISegmentedControl!
 
@@ -55,42 +54,42 @@ class InnoculationsVC: UIViewController {
     
 
     func setupScreen() {
-        
-        // Child details and image
-        self.firstname.text = selectedChildProfile.firstname
-        self.surname.text = selectedChildProfile.surname
+
+        outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
+        outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
+
+        outerChildDetailView.layer.cornerRadius = 10.0
+        outerChildDetailView.layer.borderWidth = 1
+        outerChildDetailView.layer.borderColor = UIColor.gray.cgColor
+        outerChildDetailView.clipsToBounds = true
+        outerChildDetailView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerChildDetailView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
 
         // Child details and image
-        self.firstname.text = selectedChildProfile.firstname
-        self.surname.text = selectedChildProfile.surname
-        
-        var imageName = ""
-        
-        if selectedChildProfile.sex == "Male" {
-            imageName = "boy-icon"
-        }
-        else {
-            imageName = "girl-icon"
-        }
-        
-        let image = UIImage(named: imageName)
-        genderImage.image = image
+        outerChildDetailView.buildView(firstNameString: selectedChildProfile.firstname, lastNameString: selectedChildProfile.surname, sexString: selectedChildProfile.sex)
 
         // Views
         timelineTableView.layer.cornerRadius = 10.0
         timelineTableView.layer.borderWidth = 1
         timelineTableView.layer.borderColor = UIColor.gray.cgColor
-        timelineTableView.alpha = 0.6
+        timelineTableView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
         
         innoculationsOuterView.layer.cornerRadius = 10.0
         innoculationsOuterView.layer.borderWidth = 1
         innoculationsOuterView.layer.borderColor = UIColor.gray.cgColor
-        innoculationsOuterView.alpha = 0.6
+        innoculationsOuterView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+        innoculationsOuterView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
         
+
         innoculationDescriptionView.layer.cornerRadius = 10.0
         innoculationDescriptionView.layer.borderWidth = 1
         innoculationDescriptionView.layer.borderColor = UIColor.gray.cgColor
-        innoculationDescriptionView.alpha = 0.6
+        innoculationDescriptionView.alpha = 0.8
+        innoculationDescriptionView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+
+        innoculationSelectionInstructions.text = NSLocalizedString("Select a time period on the left to show which innoculations are due for that time period.", comment: "")
+        
+        innoculationDescriptionInstructions.text = NSLocalizedString("Select an innoculation to see its description.", comment: "")
         
         vaccineTakenLabel.isHidden = true
         vaccineTakenSegmentedControl.isHidden = true
@@ -109,6 +108,7 @@ class InnoculationsVC: UIViewController {
 
         innoculationsForTimePeriod = try! Realm().objects(VaccineDescriptionLookup.self).filter(predicate)
         innoculationsForTimePeriod = innoculationsForTimePeriod!.sorted(byKeyPath: "sequence", ascending: true)
+        
     }
 
     func populateInnoculationDescriptionForTimePeriod() {
@@ -120,12 +120,17 @@ class InnoculationsVC: UIViewController {
             vaccineTakenLabel.isHidden = false
             vaccineTakenSegmentedControl.isHidden = false
         }
+        
+        innoculationDescriptionInstructions.isHidden = true
+
     }
 
     func clearInnoculationDescriptionForTimePeriod() {
         
         innoculationDescriptionPeriod.text = ""
         innoculationDescription.text = ""
+        
+        innoculationDescriptionInstructions.isHidden = false
         
         vaccineTakenLabel.isHidden = true
         vaccineTakenSegmentedControl.isHidden = true
@@ -383,6 +388,8 @@ extension InnoculationsVC : UITableViewDelegate {
         if tableView == self.timelineTableView {
             selectedTimePeriod = innoculationPeriods[indexPath.row]
             
+            innoculationSelectionInstructions.isHidden = true
+
             // Reload the innoculation descriptions, based on selected time period
             getInnoculationForTimePeriods()
             innoculationsTableView.reloadData()

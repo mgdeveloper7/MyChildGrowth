@@ -67,15 +67,23 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
     
     func setupScreen() {
         
+        outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
+        outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
+
         outerChildDetailView.layer.cornerRadius = 10.0
         outerChildDetailView.layer.borderWidth = 1
         outerChildDetailView.layer.borderColor = UIColor.gray.cgColor
         outerChildDetailView.clipsToBounds = true
+        outerChildDetailView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerChildDetailView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
         
         // Buttons
-        saveButton.layer.cornerRadius = 10.0
+        saveButton.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
         saveButton.layer.borderWidth = 1
-        saveButton.layer.borderColor = UIColor.lightGray.cgColor
+        saveButton.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+        saveButton.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+        saveButton.setTitleColor(GlobalConstants.TableViewAlternateShading.Lighter, for: .normal)
+        saveButton.clipsToBounds = true
 
         // Delegates
         firstname.delegate = self

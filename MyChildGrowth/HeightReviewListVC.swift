@@ -13,10 +13,9 @@ class HeightReviewListVC: UIViewController {
 
     // MARK: Outlets
     @IBOutlet weak var outerScreenImageView : UIImageView!
-    @IBOutlet weak var outerChildDetailView : UIView!
-    @IBOutlet weak var genderImage : UIImageView!
-    @IBOutlet weak var firstname : UILabel!
-    @IBOutlet weak var surname : UILabel!
+    @IBOutlet weak var outerChildDetailView : ChildNameView!
+    @IBOutlet weak var enterHeightView : UIView!
+    
     @IBOutlet weak var heightsTableView : UITableView!
     
     var selectedChildProfile = ChildProfile()
@@ -38,31 +37,30 @@ class HeightReviewListVC: UIViewController {
     
 
     func setupScreen() {
-        
-        // Child details and image
-        self.firstname.text = selectedChildProfile.firstname
-        self.surname.text = selectedChildProfile.surname
-        
-        var imageName = ""
-        
-        if selectedChildProfile.sex == "Male" {
-            imageName = "boy-icon"
-        }
-        else {
-            imageName = "girl-icon"
-        }
-        
-        let image = UIImage(named: imageName)
-        genderImage.image = image
+
+        outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
+        outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
+
+        outerChildDetailView.layer.cornerRadius = 10.0
+        outerChildDetailView.layer.borderWidth = 1
+        outerChildDetailView.layer.borderColor = UIColor.gray.cgColor
+        outerChildDetailView.clipsToBounds = true
+        outerChildDetailView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerChildDetailView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+
+        enterHeightView.layer.cornerRadius = 10.0
+        enterHeightView.layer.borderWidth = 1
+        enterHeightView.layer.borderColor = UIColor.gray.cgColor
+        enterHeightView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        enterHeightView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
 
         // Tableview
-        
-        heightsTableView.layer.cornerRadius = 10.0
-        heightsTableView.layer.borderWidth = 1
-        heightsTableView.layer.borderColor = UIColor.lightGray.cgColor
         heightsTableView.allowsSelection = false
+        heightsTableView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
         
-        heightsTableView.alpha = 0.6
+        // Child details and image
+        outerChildDetailView.buildView(firstNameString: selectedChildProfile.firstname, lastNameString: selectedChildProfile.surname, sexString: selectedChildProfile.sex)
+        
 
     }
     
@@ -129,7 +127,7 @@ extension HeightReviewListVC : UITableViewDataSource {
     }
     
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return tableView.rowHeight-2
+        return tableView.rowHeight
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -148,6 +146,15 @@ extension HeightReviewListVC : UITableViewDataSource {
         cell.heightValue.text = String(format: "%.2f", height.value) + " m"
         cell.dateMeasured.text = formatter.string(from: height.dateMeasured! as Date)
         
+        // Colour shading
+        
+        if (indexPath.row % 2 == 0) {
+            cell.backgroundColor = GlobalConstants.TableViewAlternateShading.Darker
+        }
+        else {
+            cell.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        }
+
         return cell
     }
     

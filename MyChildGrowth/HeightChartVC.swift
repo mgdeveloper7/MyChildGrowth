@@ -13,14 +13,12 @@ class HeightChartVC: UIViewController {
 
     // MARK: Outlets
     @IBOutlet weak var outerScreenImageView : UIImageView!
-    @IBOutlet weak var outerChildDetailView : UIView!
-    @IBOutlet weak var genderImage : UIImageView!
-    @IBOutlet weak var firstname : UILabel!
-    @IBOutlet weak var surname : UILabel!
+    @IBOutlet weak var outerChildDetailView : ChildNameView!
     
+    @IBOutlet weak var chartDetailView : UIView!
     @IBOutlet weak var outerChartView : UIView!
     @IBOutlet weak var growthSince : UILabel!
-    
+ 
     @IBOutlet weak var outerButtonView : UIView!
     @IBOutlet weak var lineChart: LineChart!
     @IBOutlet weak var addHeightButton : UIButton!
@@ -35,6 +33,12 @@ class HeightChartVC: UIViewController {
         // Do any additional setup after loading the view.
         setupScreen()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // Graph will refresh itself after entering a new height
+        
         getHeightsForChild()
         drawChart()
     }
@@ -46,42 +50,49 @@ class HeightChartVC: UIViewController {
     
 
     func setupScreen() {
-    
+
+        outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
+        outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
+
         // Views
-        outerChartView.layer.cornerRadius = 10.0
-        outerChartView.layer.borderWidth = 1
-        outerChartView.layer.borderColor = UIColor.lightGray.cgColor
-        outerChartView.alpha = 0.6
+        
+        outerChildDetailView.layer.cornerRadius = 10.0
+        outerChildDetailView.layer.borderWidth = 1
+        outerChildDetailView.layer.borderColor = UIColor.gray.cgColor
+        outerChildDetailView.clipsToBounds = true
+        outerChildDetailView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerChildDetailView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+
+        outerChartView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+      //  outerChildDetailView.layer.cornerRadius = 10.0
+    //    outerChildDetailView.layer.borderWidth = 1
+
+        chartDetailView.layer.cornerRadius = 10.0
+        chartDetailView.layer.borderWidth = 1
+        chartDetailView.layer.borderColor = UIColor.gray.cgColor
+        chartDetailView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        chartDetailView.alpha = 0.85
         
         lineChart.layer.cornerRadius = 5.0
         lineChart.layer.borderWidth = 1
         lineChart.layer.borderColor = UIColor.lightGray.cgColor
         lineChart.clipsToBounds = true
-//        outerChartView.alpha = 0.6
+        lineChart.alpha = 0.9
 
 
         // Buttons
-        addHeightButton.layer.cornerRadius = 10.0
+        addHeightButton.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
         addHeightButton.layer.borderWidth = 1
-        addHeightButton.layer.borderColor = UIColor.lightGray.cgColor
+        addHeightButton.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+        addHeightButton.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+        addHeightButton.setTitleColor(GlobalConstants.TableViewAlternateShading.Lighter, for: .normal)
+        addHeightButton.clipsToBounds = true
         
         // Child details and image
-        self.firstname.text = selectedChildProfile.firstname
-        self.surname.text = selectedChildProfile.surname
-        
-        var imageName = ""
-        
-        if selectedChildProfile.sex == "Male" {
-            imageName = "boy-icon"
-        }
-        else {
-            imageName = "girl-icon"
-        }
-        
-        let image = UIImage(named: imageName)
-        genderImage.image = image
+        outerChildDetailView.buildView(firstNameString: selectedChildProfile.firstname, lastNameString: selectedChildProfile.surname, sexString: selectedChildProfile.sex)
 
     }
+    
     // MARK: Segue Setup
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -138,9 +149,9 @@ class HeightChartVC: UIViewController {
         lineChart.deltaY = 20
         
         lineChart.circleColor = UIColor.red
-        lineChart.showInnerLines = false
-        lineChart.circleSizeMultiplier = 5
-        lineChart.lineWidth = 4
+        lineChart.showInnerLines = true
+        lineChart.circleSizeMultiplier = 6
+        lineChart.lineWidth = 5
 
   //      lineChart.setAxisRange(xMin: 0, xMax: 13, yMin: 20, yMax: 120)
         lineChart.plot(points)

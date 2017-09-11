@@ -13,11 +13,8 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
 
     // MARK: Outlets
     @IBOutlet weak var outerScreenImageView : UIImageView!
-    @IBOutlet weak var outerChildDetailView : UIView!
-    @IBOutlet weak var genderImage : UIImageView!
-    @IBOutlet weak var firstname : UILabel!
-    @IBOutlet weak var surname : UILabel!
     
+    @IBOutlet weak var outerChildDetailView : ChildNameView!    
     @IBOutlet weak var outerButtonView : UIView!
     
     @IBOutlet weak var lastHeightAndDate : UILabel!
@@ -55,32 +52,33 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
     
     func setupScreen() {
         
+        outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
+        outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
+
+        outerChildDetailView.layer.cornerRadius = 10.0
+        outerChildDetailView.layer.borderWidth = 1
+        outerChildDetailView.layer.borderColor = UIColor.gray.cgColor
+        outerChildDetailView.clipsToBounds = true
+        outerChildDetailView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerChildDetailView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+        
         outerButtonView.layer.cornerRadius = 10.0
         outerButtonView.layer.borderWidth = 1
         outerButtonView.layer.borderColor = UIColor.gray.cgColor
         outerButtonView.clipsToBounds = true
+        outerButtonView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerButtonView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
         
         // Buttons
-        saveButton.layer.cornerRadius = 10.0
+        saveButton.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
         saveButton.layer.borderWidth = 1
-        saveButton.layer.borderColor = UIColor.lightGray.cgColor
+        saveButton.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+        saveButton.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+        saveButton.setTitleColor(GlobalConstants.TableViewAlternateShading.Lighter, for: .normal)
+        saveButton.clipsToBounds = true
         
         // Child details and image
-        self.firstname.text = selectedChildProfile.firstname
-        self.surname.text = selectedChildProfile.surname
-        
-        var imageName = ""
-        
-        if selectedChildProfile.sex == "Male" {
-            imageName = "boy-icon"
-        }
-        else {
-            imageName = "girl-icon"
-        }
-        
-        let image = UIImage(named: imageName)
-        genderImage.image = image
-
+        outerChildDetailView.buildView(firstNameString: selectedChildProfile.firstname, lastNameString: selectedChildProfile.surname, sexString: selectedChildProfile.sex)
     }
 
     func getLastHeight() {

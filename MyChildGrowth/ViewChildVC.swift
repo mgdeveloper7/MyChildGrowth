@@ -59,12 +59,17 @@ class ViewChildVC: UIViewController {
 
     func setupScreen() {
         
+        outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
+        outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
+
         // Buttons
         outerChildDetailView.layer.cornerRadius = 10.0
         outerChildDetailView.layer.borderWidth = 1
         outerChildDetailView.layer.borderColor = UIColor.gray.cgColor
         outerChildDetailView.clipsToBounds = true
-
+        outerChildDetailView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerChildDetailView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+        
         // Child details and image
         self.firstname.text = selectedChildProfile.firstname
         self.surname.text = selectedChildProfile.surname
@@ -95,17 +100,29 @@ class ViewChildVC: UIViewController {
         outerButtonView.layer.borderWidth = 1
         outerButtonView.layer.borderColor = UIColor.gray.cgColor
         outerButtonView.clipsToBounds = true
+        outerButtonView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerButtonView.alpha = 0.9
+
         
         // Buttons
-        innoculationsButton.layer.cornerRadius = 10.0
+        innoculationsButton.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
         innoculationsButton.layer.borderWidth = 1
-        innoculationsButton.layer.borderColor = UIColor.lightGray.cgColor
-        heightEntryButton.layer.cornerRadius = 10.0
+        innoculationsButton.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+        innoculationsButton.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+        innoculationsButton.setTitleColor(GlobalConstants.TableViewAlternateShading.Lighter, for: .normal)
+
+        heightEntryButton.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
         heightEntryButton.layer.borderWidth = 1
-        heightEntryButton.layer.borderColor = UIColor.lightGray.cgColor
-        weightEntryButton.layer.cornerRadius = 10.0
+        heightEntryButton.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+        heightEntryButton.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+        heightEntryButton.setTitleColor(GlobalConstants.TableViewAlternateShading.Lighter, for: .normal)
+        heightEntryButton.clipsToBounds = true
+
+        weightEntryButton.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
         weightEntryButton.layer.borderWidth = 1
-        weightEntryButton.layer.borderColor = UIColor.lightGray.cgColor
+        weightEntryButton.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+        weightEntryButton.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+        weightEntryButton.setTitleColor(GlobalConstants.TableViewAlternateShading.Lighter, for: .normal)
 
     }
     

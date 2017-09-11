@@ -45,4 +45,8 @@
 "PRE-SCHOOL BOOSTER" = "PRE-SCHOOL BOOSTER";
 "Low-Dose-dTaP-Key" = "NOTE:  Can also be given low dose Diptheria (dTaP)";
 
+/** Innoculations */
+
+"Select a time period on the left to show which innoculations are due for that time period." = "Select a time period on the left to show which innoculations are due for that time period.";
+"Select an innoculation to see its description." = "Select an innoculation to see its description.";
 

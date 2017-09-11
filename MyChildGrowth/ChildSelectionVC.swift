@@ -53,6 +53,7 @@ class ChildSelectionVC: UIViewController {
         // would have positioned the buttonViewPod
         
         refreshButtons()
+        buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: buttonPodView.frame.size.height)
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,6 +81,10 @@ class ChildSelectionVC: UIViewController {
 
     func setupScreen () {
         
+        outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
+        outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
+
+        
         // Make round corners for the outerviews
         childSelectionLabel.layer.cornerRadius = 10.0
         childSelectionLabel.clipsToBounds = true
@@ -88,6 +93,8 @@ class ChildSelectionVC: UIViewController {
         buttonPodView.layer.borderWidth = 1
         buttonPodView.layer.borderColor = UIColor.gray.cgColor
         buttonPodView.clipsToBounds = true
+        buttonPodView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        buttonPodView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
         
         buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: buttonPodView.frame.size.height)
         
@@ -146,16 +153,17 @@ class ChildSelectionVC: UIViewController {
                 let childProfile = childProfiles[i]
                 
                 let btn: UIButton = UIButton(frame: CGRect(x: Int(xPos), y: yPos , width: buttonWidth, height: buttonHeight))
-                btn.backgroundColor = UIColor.gray
+                btn.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
                 btn.setTitle(childProfile.firstname, for: .normal)
                 btn.addTarget(self, action: #selector(childButtonPressed), for: .touchUpInside)
                 
                 btn.tag = i
-                btn.layer.cornerRadius = 5
+                btn.layer.borderWidth = 1
+                btn.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+                btn.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
+                btn.clipsToBounds = true
                 
                 buttonPodView.addSubview(btn)
-                //btn.center = buttonPodView.center
-
                 yPos = yPos + buttonHeight + 10
             }
 
