@@ -12,6 +12,7 @@ import RealmSwift
 class HeightReviewListVC: UIViewController {
 
     // MARK: Outlets
+    @IBOutlet weak var titleBarNavItem: UINavigationItem!
     @IBOutlet weak var outerScreenImageView : UIImageView!
     @IBOutlet weak var outerChildDetailView : ChildNameView!
     @IBOutlet weak var enterHeightView : UIView!
@@ -37,6 +38,8 @@ class HeightReviewListVC: UIViewController {
     
 
     func setupScreen() {
+
+        titleBarNavItem.setTitle(title: "MyChildGrowth", subtitle: "List Child Heights")
 
         outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
         outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha

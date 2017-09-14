@@ -80,6 +80,7 @@
                         <outlet property="buttonPodView" destination="6as-Xc-ncX" id="zaa-0T-AEl"/>
                         <outlet property="childSelectionLabel" destination="tSG-Bt-co0" id="KF1-Cs-0oR"/>
                         <outlet property="outerScreenImageView" destination="Zff-fQ-EMq" id="X1L-LT-bf3"/>
+                        <outlet property="titleBarNavItem" destination="B8L-n5-HqR" id="bp0-rV-kf1"/>
                         <segue destination="rhE-wq-8ga" kind="show" identifier="AddChildSegue" id="sYZ-Yr-7WD"/>
                         <segue destination="YNt-ne-uBW" kind="show" identifier="ViewChildSegue" id="En6-Vj-Sfc"/>
                     </connections>
@@ -118,21 +119,38 @@
                             <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newborn-baby-feet-basket-pexels" translatesAutoresizingMaskIntoConstraints="NO" id="qiL-OZ-M4K">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-child-icon" translatesAutoresizingMaskIntoConstraints="NO" id="gjU-Ha-7hm">
-                                <rect key="frame" x="16" y="93" width="55" height="54"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0T-5d-VP0">
+                                <rect key="frame" x="10" y="88" width="300" height="55"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-child-icon" translatesAutoresizingMaskIntoConstraints="NO" id="gjU-Ha-7hm">
+                                        <rect key="frame" x="11" y="3" width="48" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="pRe-6W-8CN"/>
+                                            <constraint firstAttribute="height" constant="49" id="uVD-CP-Hcd"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enter your childs details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJi-C9-Fre">
+                                        <rect key="frame" x="85" y="17" width="207" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="O2F-Kn-TVw"/>
-                                    <constraint firstAttribute="width" constant="55" id="bGe-nB-r6M"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZJi-C9-Fre" secondAttribute="trailing" constant="32" id="0mS-Iu-X4G"/>
+                                    <constraint firstAttribute="bottom" secondItem="gjU-Ha-7hm" secondAttribute="bottom" constant="3" id="JZi-nT-eT0"/>
+                                    <constraint firstItem="ZJi-C9-Fre" firstAttribute="leading" secondItem="gjU-Ha-7hm" secondAttribute="trailing" constant="26" id="MWY-aN-Ztw"/>
+                                    <constraint firstItem="ZJi-C9-Fre" firstAttribute="leading" secondItem="gjU-Ha-7hm" secondAttribute="trailing" constant="26" id="bc9-5m-wdw"/>
+                                    <constraint firstAttribute="height" constant="55" id="puu-LF-qRW"/>
+                                    <constraint firstItem="gjU-Ha-7hm" firstAttribute="leading" secondItem="X0T-5d-VP0" secondAttribute="leading" constant="11" id="q8Y-qU-fPO"/>
+                                    <constraint firstItem="gjU-Ha-7hm" firstAttribute="top" secondItem="X0T-5d-VP0" secondAttribute="top" constant="3" id="ss2-Xa-zWH"/>
+                                    <constraint firstItem="ZJi-C9-Fre" firstAttribute="top" secondItem="X0T-5d-VP0" secondAttribute="top" constant="17" id="xVr-uO-DgE"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZJi-C9-Fre" secondAttribute="bottom" constant="17.5" id="xs3-nT-eXu"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your childs details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJi-C9-Fre">
-                                <rect key="frame" x="88" y="100" width="183" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOL-EH-XhB">
-                                <rect key="frame" x="11" y="165" width="299" height="273"/>
+                                <rect key="frame" x="10" y="165" width="300" height="273"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzy-o3-IYO">
                                         <rect key="frame" x="8" y="29" width="126" height="29"/>
@@ -146,7 +164,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Surname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Caj-dY-0Tr">
                                         <rect key="frame" x="8" y="75" width="126" height="29"/>
@@ -160,7 +178,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9U-fB-nvG">
                                         <rect key="frame" x="8" y="120" width="126" height="29"/>
@@ -220,28 +238,27 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qDb-4W-HdW" firstAttribute="leading" secondItem="vfI-7W-heg" secondAttribute="leadingMargin" constant="20" id="0i1-xJ-IIK"/>
-                            <constraint firstItem="ZJi-C9-Fre" firstAttribute="top" secondItem="VEX-Ag-TOR" secondAttribute="bottom" constant="36" id="1T8-fd-dMF"/>
                             <constraint firstItem="Hfb-1j-MnJ" firstAttribute="top" secondItem="qDb-4W-HdW" secondAttribute="bottom" constant="46" id="1eM-gP-Gzl"/>
                             <constraint firstAttribute="bottom" secondItem="JOL-EH-XhB" secondAttribute="bottom" constant="130" id="6gG-VV-fd0"/>
-                            <constraint firstItem="gjU-Ha-7hm" firstAttribute="top" secondItem="VEX-Ag-TOR" secondAttribute="bottom" constant="29" id="7a5-I0-rT1"/>
-                            <constraint firstItem="ZJi-C9-Fre" firstAttribute="centerY" secondItem="gjU-Ha-7hm" secondAttribute="centerY" id="80h-go-VaN"/>
+                            <constraint firstItem="X0T-5d-VP0" firstAttribute="top" secondItem="VEX-Ag-TOR" secondAttribute="bottom" constant="24" id="Cfs-2x-Ijh"/>
                             <constraint firstItem="qiL-OZ-M4K" firstAttribute="leading" secondItem="VEX-Ag-TOR" secondAttribute="leading" id="EeR-eS-lgF"/>
                             <constraint firstItem="qDb-4W-HdW" firstAttribute="top" secondItem="JOL-EH-XhB" secondAttribute="bottom" constant="26" id="ElR-3u-MaQ"/>
                             <constraint firstItem="qiL-OZ-M4K" firstAttribute="leading" secondItem="vfI-7W-heg" secondAttribute="leading" id="M2C-bD-8sz"/>
                             <constraint firstItem="VEX-Ag-TOR" firstAttribute="top" secondItem="Ra1-oc-hVA" secondAttribute="bottom" id="MUs-IC-YaY"/>
                             <constraint firstItem="JOL-EH-XhB" firstAttribute="centerX" secondItem="VEX-Ag-TOR" secondAttribute="centerX" id="Szu-8a-skk"/>
-                            <constraint firstItem="JOL-EH-XhB" firstAttribute="top" secondItem="gjU-Ha-7hm" secondAttribute="bottom" constant="18" id="acn-GM-qo7"/>
                             <constraint firstItem="qiL-OZ-M4K" firstAttribute="bottom" secondItem="Hfb-1j-MnJ" secondAttribute="top" id="biJ-1G-z2V"/>
                             <constraint firstItem="qiL-OZ-M4K" firstAttribute="trailing" secondItem="VEX-Ag-TOR" secondAttribute="trailing" id="cif-12-bwo"/>
                             <constraint firstItem="qiL-OZ-M4K" firstAttribute="top" secondItem="VEX-Ag-TOR" secondAttribute="bottom" id="eAh-Mn-o0M"/>
-                            <constraint firstItem="JOL-EH-XhB" firstAttribute="leading" secondItem="vfI-7W-heg" secondAttribute="leadingMargin" constant="-5" id="esg-Nc-3UV"/>
+                            <constraint firstItem="JOL-EH-XhB" firstAttribute="leading" secondItem="vfI-7W-heg" secondAttribute="leadingMargin" constant="-6" id="esg-Nc-3UV"/>
+                            <constraint firstItem="X0T-5d-VP0" firstAttribute="leading" secondItem="vfI-7W-heg" secondAttribute="leading" constant="10" id="hBb-UQ-POB"/>
+                            <constraint firstAttribute="trailing" secondItem="X0T-5d-VP0" secondAttribute="trailing" constant="10" id="r3d-p7-LPt"/>
                             <constraint firstAttribute="trailing" secondItem="qiL-OZ-M4K" secondAttribute="trailing" id="wUV-1c-iBc"/>
-                            <constraint firstItem="gjU-Ha-7hm" firstAttribute="leading" secondItem="vfI-7W-heg" secondAttribute="leadingMargin" id="xfy-y3-j6x"/>
-                            <constraint firstItem="ZJi-C9-Fre" firstAttribute="leading" secondItem="gjU-Ha-7hm" secondAttribute="trailing" constant="17" id="xiy-B5-jc8"/>
                             <constraint firstItem="qDb-4W-HdW" firstAttribute="centerX" secondItem="VEX-Ag-TOR" secondAttribute="centerX" id="yLO-5U-obU"/>
+                            <constraint firstItem="JOL-EH-XhB" firstAttribute="top" secondItem="X0T-5d-VP0" secondAttribute="bottom" constant="22" id="zu1-za-C02"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addChildImageView" destination="X0T-5d-VP0" id="uDz-pq-JRL"/>
                         <outlet property="dateView" destination="p3H-1P-jLM" id="VJj-SG-NkP"/>
                         <outlet property="firstname" destination="bCP-mg-1dK" id="ffd-q3-mUK"/>
                         <outlet property="outerChildDetailView" destination="JOL-EH-XhB" id="nFP-f0-ZPN"/>
@@ -249,6 +266,7 @@
                         <outlet property="saveButton" destination="qDb-4W-HdW" id="XAE-F1-H2j"/>
                         <outlet property="sexSegmentedControl" destination="wLf-HD-as4" id="23d-fO-8yS"/>
                         <outlet property="surname" destination="2Yf-68-v9g" id="nAb-Xi-nB7"/>
+                        <outlet property="titleBarNavItem" destination="Lwl-p2-xwN" id="9c3-Gz-Ygx"/>
                         <outlet property="weightView" destination="EfM-2Y-Mre" id="9fy-E8-7yt"/>
                     </connections>
                 </viewController>
@@ -425,6 +443,7 @@
                         <outlet property="outerChildDetailView" destination="Can-dV-HBM" id="3Fa-Se-tXm"/>
                         <outlet property="outerScreenImageView" destination="jia-Bd-7B1" id="qjz-Da-LCF"/>
                         <outlet property="surname" destination="tpO-9B-QSk" id="6A9-8f-Cej"/>
+                        <outlet property="titleBarNavItem" destination="F5G-X4-bve" id="Wal-mQ-PhZ"/>
                         <outlet property="weightAtBirth" destination="MZT-US-1bh" id="LI8-Ji-jd6"/>
                         <outlet property="weightEntryButton" destination="NZZ-0T-YcQ" id="nwO-nQ-hIS"/>
                         <segue destination="xTB-f7-Qf8" kind="show" identifier="HeightChartSegue" id="hX8-nH-IjE"/>
@@ -604,6 +623,7 @@
                         <outlet property="outerChartView" destination="rSm-K7-79J" id="KB6-sU-RCm"/>
                         <outlet property="outerChildDetailView" destination="SsJ-g4-TRH" id="iAx-cr-igH"/>
                         <outlet property="outerScreenImageView" destination="EG9-Fz-iBr" id="ks5-aP-eNY"/>
+                        <outlet property="titleBarNavItem" destination="pl8-S9-jBF" id="8nw-E6-Qay"/>
                         <segue destination="KKx-yc-1uj" kind="show" identifier="ListHeightSegue" id="Hqi-fS-PaK"/>
                         <segue destination="U31-i6-cwy" kind="show" identifier="AddHeightSegue" id="bVU-Xh-vIa"/>
                     </connections>
@@ -747,6 +767,7 @@
                         <outlet property="heightsTableView" destination="nqd-ln-eOC" id="bTL-Jk-DDn"/>
                         <outlet property="outerChildDetailView" destination="kTJ-w2-ovU" id="HmN-Hc-m7P"/>
                         <outlet property="outerScreenImageView" destination="gdW-V1-qSH" id="upw-Ip-AxD"/>
+                        <outlet property="titleBarNavItem" destination="Swf-KZ-dfX" id="aX7-WR-jBa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQx-5j-VaQ" sceneMemberID="firstResponder"/>
@@ -874,6 +895,7 @@
                         <outlet property="outerChildDetailView" destination="UBI-yk-4cs" id="Cl6-UI-kA2"/>
                         <outlet property="outerScreenImageView" destination="7wk-nF-ddY" id="DN2-xq-OkY"/>
                         <outlet property="saveButton" destination="ReW-MT-HD6" id="4YG-tA-Kkr"/>
+                        <outlet property="titleBarNavItem" destination="C2e-Zd-rs6" id="L27-6k-zaf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iUB-RH-7lh" sceneMemberID="firstResponder"/>
@@ -1166,6 +1188,7 @@
                         <outlet property="outerChildDetailView" destination="2Gf-ix-qI7" id="pRC-Sf-ney"/>
                         <outlet property="outerScreenImageView" destination="rst-Fo-pcb" id="Se7-Ma-eNv"/>
                         <outlet property="timelineTableView" destination="1PZ-NY-rMF" id="UFi-n9-Pzc"/>
+                        <outlet property="titleBarNavItem" destination="olh-rD-Lwj" id="eAb-2x-Zma"/>
                         <outlet property="vaccineTakenLabel" destination="cn3-Ap-A4w" id="eet-Sc-PlP"/>
                         <outlet property="vaccineTakenSegmentedControl" destination="xeD-LB-dRW" id="yF2-2q-qmI"/>
                     </connections>

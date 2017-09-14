@@ -12,6 +12,7 @@ import RealmSwift
 class HeightChartVC: UIViewController {
 
     // MARK: Outlets
+    @IBOutlet weak var titleBarNavItem: UINavigationItem!
     @IBOutlet weak var outerScreenImageView : UIImageView!
     @IBOutlet weak var outerChildDetailView : ChildNameView!
     
@@ -50,6 +51,8 @@ class HeightChartVC: UIViewController {
     
 
     func setupScreen() {
+
+        titleBarNavItem.setTitle(title: "MyChildGrowth", subtitle: "View Height Chart")
 
         outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
         outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha

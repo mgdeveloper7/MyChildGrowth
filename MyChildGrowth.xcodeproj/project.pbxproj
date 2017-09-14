@@ -42,6 +42,7 @@
 		C018765F1F6134E800CD77F3 /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C018765E1F6134E800CD77F3 /* String+Size.swift */; };
 		C01876621F61353200CD77F3 /* CGPoint+Adding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876611F61353200CD77F3 /* CGPoint+Adding.swift */; };
 		C01876641F61F31D00CD77F3 /* ChildNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876631F61F31D00CD77F3 /* ChildNameView.swift */; };
+		C01876661F66921000CD77F3 /* UINavigationItem+SetTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876651F66921000CD77F3 /* UINavigationItem+SetTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		C018765E1F6134E800CD77F3 /* String+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Size.swift"; sourceTree = "<group>"; };
 		C01876611F61353200CD77F3 /* CGPoint+Adding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Adding.swift"; sourceTree = "<group>"; };
 		C01876631F61F31D00CD77F3 /* ChildNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildNameView.swift; sourceTree = "<group>"; };
+		C01876651F66921000CD77F3 /* UINavigationItem+SetTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+SetTitle.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +285,7 @@
 			children = (
 				C018765E1F6134E800CD77F3 /* String+Size.swift */,
 				C01876611F61353200CD77F3 /* CGPoint+Adding.swift */,
+				C01876651F66921000CD77F3 /* UINavigationItem+SetTitle.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				C01876511F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift in Sources */,
 				C018765F1F6134E800CD77F3 /* String+Size.swift in Sources */,
 				C01876321F56F7B700CD77F3 /* DatePicker.swift in Sources */,
+				C01876661F66921000CD77F3 /* UINavigationItem+SetTitle.swift in Sources */,
 				C01876471F5AF7D900CD77F3 /* HeightReviewListCell.swift in Sources */,
 				C018764F1F5BDA4100CD77F3 /* VaccineTimePeriodLookup.swift in Sources */,
 				C018764C1F5BD97600CD77F3 /* ChildVaccineTaken.swift in Sources */,

@@ -12,6 +12,8 @@ import RealmSwift
 class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDelegate, DatePickerDelegate {
 
     // MARK: Outlets
+    
+    @IBOutlet weak var titleBarNavItem: UINavigationItem!
     @IBOutlet weak var outerScreenImageView : UIImageView!
     
     @IBOutlet weak var outerChildDetailView : ChildNameView!    
@@ -22,6 +24,9 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
     @IBOutlet weak var heightView : ButtonIconView!
     @IBOutlet weak var saveButton : UIButton!
 
+    var heightSliderView : HeightSliderView!
+    var datePickerView : DatePicker!
+    
     var selectedChildProfile = ChildProfile()
     var selectedHeightDate : NSDate!
     var selectedHeight : Float!
@@ -52,6 +57,8 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
     
     func setupScreen() {
         
+        titleBarNavItem.setTitle(title: "MyChildGrowth", subtitle: "Add Height")
+
         outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
         outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
 
@@ -177,9 +184,14 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
         if buttonIconViewTag == 1 {
             
             NSLog("Date Picked")
+            
+            if heightSliderView != nil {
+                heightSliderView.removeFromSuperview()
+            }
+            
             outerChildDetailView.isUserInteractionEnabled = false
             
-            var datePickerView = DatePicker(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 170))
+            datePickerView = DatePicker(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 170))
             
             datePickerView.delegate = self
             datePickerView.buildPicker()
@@ -190,9 +202,13 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
         }
         else {
             
+            if datePickerView != nil {
+                datePickerView.removeFromSuperview()
+            }
+            
             outerChildDetailView.isUserInteractionEnabled = false
             
-            var heightSliderView = HeightSliderView(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 200))
+            heightSliderView = HeightSliderView(frame: CGRect(x: 0, y: 0 , width: self.view.frame.width , height: 200))
             
             heightSliderView.delegate = self
             heightSliderView.buildView(maxHeightValue: 1.5)

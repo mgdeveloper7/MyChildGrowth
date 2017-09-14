@@ -35,7 +35,7 @@ class GlobalConstants: NSObject {
     
     // Screen shading
     struct ScreenShading {
-        static var BackgroundImageAlpha = CGFloat(0.55)
+        static var BackgroundImageAlpha = CGFloat(0.60)
         static var ViewBackgroundAlpha = CGFloat(0.90)
        // static var MainBackgroundImageName = "newborn-baby-feet-basket-pexels"
         static var MainBackgroundImageName = "baby-boy-hat-covered-101537"

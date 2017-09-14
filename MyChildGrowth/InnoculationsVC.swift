@@ -12,6 +12,7 @@ import RealmSwift
 class InnoculationsVC: UIViewController {
 
     // MARK: Outlets
+    @IBOutlet weak var titleBarNavItem: UINavigationItem!
     @IBOutlet weak var outerScreenImageView : UIImageView!
     @IBOutlet weak var outerChildDetailView : ChildNameView!
 
@@ -54,6 +55,8 @@ class InnoculationsVC: UIViewController {
     
 
     func setupScreen() {
+
+        titleBarNavItem.setTitle(title: "MyChildGrowth", subtitle: "Innoculations")
 
         outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
         outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha

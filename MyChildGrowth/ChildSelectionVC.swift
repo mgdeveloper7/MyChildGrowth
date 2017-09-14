@@ -13,7 +13,6 @@ class ChildSelectionVC: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet weak var titleBar: UINavigationBar!
     @IBOutlet weak var titleBarNavItem: UINavigationItem!
     
     @IBOutlet weak var outerScreenImageView : UIImageView!
@@ -81,6 +80,8 @@ class ChildSelectionVC: UIViewController {
 
     func setupScreen () {
         
+        titleBarNavItem.setTitle(title: "MyChildGrowth", subtitle: "Select Child")
+
         outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
         outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
 

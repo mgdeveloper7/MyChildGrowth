@@ -13,7 +13,10 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
 
     // MARK: Outlets
     
+    @IBOutlet weak var titleBarNavItem: UINavigationItem!
+
     @IBOutlet weak var outerScreenImageView : UIImageView!
+    @IBOutlet weak var addChildImageView : UIView!
 
     @IBOutlet weak var outerChildDetailView : UIView!
     @IBOutlet weak var firstname : UITextField!
@@ -67,8 +70,17 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
     
     func setupScreen() {
         
+        titleBarNavItem.setTitle(title: "MyChildGrowth", subtitle: "Add Child")
+        
         outerScreenImageView.image = UIImage(named: GlobalConstants.ScreenShading.MainBackgroundImageName)
         outerScreenImageView.alpha = GlobalConstants.ScreenShading.BackgroundImageAlpha
+
+        addChildImageView.layer.cornerRadius = 10.0
+        addChildImageView.layer.borderWidth = 1
+        addChildImageView.layer.borderColor = UIColor.gray.cgColor
+        addChildImageView.clipsToBounds = true
+        addChildImageView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        addChildImageView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
 
         outerChildDetailView.layer.cornerRadius = 10.0
         outerChildDetailView.layer.borderWidth = 1
