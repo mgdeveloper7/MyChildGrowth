@@ -62,7 +62,7 @@ class ButtonIconView: UIView {
         let image = UIImage(named: imageName)
         
         let imageXPos = Int(buttonIconOuterButton.frame.origin.x) + 5
-        let imageYPos = 5
+        let imageYPos = 10
         
         buttonIcon = UIImageView(frame: CGRect(x: imageXPos , y: imageYPos , width: 20, height: 20))
         buttonIcon.image = image

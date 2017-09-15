@@ -39,11 +39,11 @@ class AddHeightVC: UIViewController, ButtonIconViewDelegate, HeightSliderViewDel
         setupScreen()
         getLastHeight()
         
-        dateView.buildView(width: 105, height: 30, iconImageName: "calendar-icon", withTag: 1)
+        dateView.buildView(width: 105, height: 40, iconImageName: "calendar-icon", withTag: 1)
         dateView.delegate = self
         dateView.layer.cornerRadius = 5
         
-        heightView.buildView(width: 105, height: 30, iconImageName: "height-icon", withTag: 2)
+        heightView.buildView(width: 105, height: 40, iconImageName: "height-icon", withTag: 2)
         heightView.delegate = self
         heightView.layer.cornerRadius = 5
 

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDelegate, DatePickerDelegate, UITextFieldDelegate {
+class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDelegate, DatePickerDelegate, UITextViewDelegate {
 
     // MARK: Outlets
     
@@ -19,8 +19,8 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
     @IBOutlet weak var addChildImageView : UIView!
 
     @IBOutlet weak var outerChildDetailView : UIView!
-    @IBOutlet weak var firstname : UITextField!
-    @IBOutlet weak var surname : UITextField!
+    @IBOutlet weak var firstname : UITextView!
+    @IBOutlet weak var surname : UITextView!
     @IBOutlet weak var sexSegmentedControl : UISegmentedControl!
     @IBOutlet weak var dateView : ButtonIconView!
     @IBOutlet weak var weightView : ButtonIconView!
@@ -52,11 +52,11 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         // On screen startup, refresh buttons at this point since auto layout
         // would have positioned the buttonViewPod
         
-        dateView.buildView(width: 120, height: 30, iconImageName: "calendar-icon", withTag: 1)
+        dateView.buildView(width: 120, height: 40, iconImageName: "calendar-icon", withTag: 1)
         dateView.delegate = self
         dateView.layer.cornerRadius = 5
         
-        weightView.buildView(width: 120, height: 30, iconImageName: "weight-icon", withTag: 2)
+        weightView.buildView(width: 120, height: 40, iconImageName: "weight-icon", withTag: 2)
         weightView.delegate = self
         weightView.layer.cornerRadius = 5
 
@@ -88,6 +88,14 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         outerChildDetailView.clipsToBounds = true
         outerChildDetailView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
         outerChildDetailView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+        
+        firstname.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
+//        firstname.layer.borderWidth = 1
+//        firstname.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+        
+        surname.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
+//        surname.layer.borderWidth = 1
+//        surname.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
         
         // Buttons
         saveButton.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
@@ -283,5 +291,18 @@ class AddChildVC: UIViewController, WeightSliderViewDelegate, ButtonIconViewDele
         self.view.endEditing(true)
         return false
     }
+    
+    // MARK:  UITextView Delegate Methods
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        // Detect a carriage return in the typed text.  If there is one, hide the keyboard
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+
 
 }

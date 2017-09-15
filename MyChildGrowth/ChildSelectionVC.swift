@@ -16,9 +16,13 @@ class ChildSelectionVC: UIViewController {
     @IBOutlet weak var titleBarNavItem: UINavigationItem!
     
     @IBOutlet weak var outerScreenImageView : UIImageView!
+    @IBOutlet weak var outerTitleImageView : UIView!
     @IBOutlet weak var childSelectionLabel : UILabel!
-    @IBOutlet weak var buttonPodView : UIScrollView!
     
+    @IBOutlet weak var childSelectionOuterView : UIView!
+    @IBOutlet weak var addChildButton : UIButton!
+    @IBOutlet weak var childSelectionTableView : UITableView!
+
     // Custom outlets
     let customBarButtonAction = UIButton(type: .custom)
 
@@ -43,16 +47,12 @@ class ChildSelectionVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-  //      refreshButtons()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        // On screen startup, refresh buttons at this point since auto layout
-        // would have positioned the buttonViewPod
-        
         refreshButtons()
-        buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: buttonPodView.frame.size.height)
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,14 +90,32 @@ class ChildSelectionVC: UIViewController {
         childSelectionLabel.layer.cornerRadius = 10.0
         childSelectionLabel.clipsToBounds = true
         
-        buttonPodView.layer.cornerRadius = 10.0
-        buttonPodView.layer.borderWidth = 1
-        buttonPodView.layer.borderColor = UIColor.gray.cgColor
-        buttonPodView.clipsToBounds = true
-        buttonPodView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
-        buttonPodView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+        outerTitleImageView.layer.cornerRadius = 10.0
+        outerTitleImageView.layer.borderWidth = 1
+        outerTitleImageView.layer.borderColor = UIColor.gray.cgColor
+        outerTitleImageView.clipsToBounds = true
+        outerTitleImageView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+        outerTitleImageView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+
+        childSelectionOuterView.layer.cornerRadius = 10.0
+        childSelectionOuterView.layer.borderWidth = 1
+        childSelectionOuterView.layer.borderColor = UIColor.gray.cgColor
+        childSelectionOuterView.clipsToBounds = true
+        childSelectionOuterView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
         
-        buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: buttonPodView.frame.size.height)
+        addChildButton.layer.cornerRadius = 10.0
+        addChildButton.layer.borderWidth = 1
+        addChildButton.layer.borderColor = UIColor.gray.cgColor
+        addChildButton.clipsToBounds = true
+        addChildButton.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+        addChildButton.setTitleColor(UIColor.white, for: .normal)
+        
+        childSelectionTableView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+
+//        buttonPodView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+//        buttonPodView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
+//        
+
         
     }
     
@@ -118,7 +136,7 @@ class ChildSelectionVC: UIViewController {
         // TODO:
         
         childProfiles = try! Realm().objects(ChildProfile.self)
-        createChildButtons()
+        childSelectionTableView.reloadData()
 
     }
     func setupColourScheme () {
@@ -130,59 +148,59 @@ class ChildSelectionVC: UIViewController {
         
     }
     
-    func createChildButtons () {
-    
-        let buttonWidth = 150
-        let buttonHeight = 35
-        // Outer pod will be centered by autolayout.
-        let xPos = (Int(buttonPodView.frame.width) / 2) - (buttonWidth/2)
-        var yPos = 10
-        
-        print(childProfiles)
-        
-        // Loop through all the buttons in the buttonPodView and remove them
-        
-        for v in buttonPodView.subviews {
-            if v is UIButton{
-                v.removeFromSuperview()
-            }
-        }
-        
-        if childProfiles.count > 0 {
-            for i in 0 ..< childProfiles.count  {
-        
-                let childProfile = childProfiles[i]
-                
-                let btn: UIButton = UIButton(frame: CGRect(x: Int(xPos), y: yPos , width: buttonWidth, height: buttonHeight))
-                btn.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
-                btn.setTitle(childProfile.firstname, for: .normal)
-                btn.addTarget(self, action: #selector(childButtonPressed), for: .touchUpInside)
-                
-                btn.tag = i
-                btn.layer.borderWidth = 1
-                btn.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
-                btn.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
-                btn.clipsToBounds = true
-                
-                buttonPodView.addSubview(btn)
-                yPos = yPos + buttonHeight + 10
-            }
-
-        }
-        
-        // Add an 'Add child button'
-        let addChildButton: UIButton = UIButton(frame: CGRect(x: Int(xPos), y: yPos+10 , width: buttonWidth, height: buttonHeight))
-        addChildButton.backgroundColor = UIColor.lightGray
-        addChildButton.setTitle(NSLocalizedString("Add Child", comment: ""), for: .normal)
-        addChildButton.addTarget(self, action: #selector(childButtonPressed), for: .touchUpInside)
-        
-        addChildButton.tag = 10
-        addChildButton.layer.cornerRadius = 5
-        buttonPodView.addSubview(addChildButton)
-        
-        //buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: CGFloat(yPos + 20))
-
-    }
+//    func createChildButtons () {
+//    
+//        let buttonWidth = 150
+//        let buttonHeight = 35
+//        // Outer pod will be centered by autolayout.
+//        let xPos = (Int(buttonPodView.frame.width) / 2) - (buttonWidth/2)
+//        var yPos = 10
+//        
+//        print(childProfiles)
+//        
+//        // Loop through all the buttons in the buttonPodView and remove them
+//        
+//        for v in buttonPodView.subviews {
+//            if v is UIButton{
+//                v.removeFromSuperview()
+//            }
+//        }
+//        
+//        if childProfiles.count > 0 {
+//            for i in 0 ..< childProfiles.count  {
+//        
+//                let childProfile = childProfiles[i]
+//                
+//                let btn: UIButton = UIButton(frame: CGRect(x: Int(xPos), y: yPos , width: buttonWidth, height: buttonHeight))
+//                btn.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+//                btn.setTitle(childProfile.firstname, for: .normal)
+//                btn.addTarget(self, action: #selector(childButtonPressed), for: .touchUpInside)
+//                
+//                btn.tag = i
+//                btn.layer.borderWidth = 1
+//                btn.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+//                btn.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
+//                btn.clipsToBounds = true
+//                
+//                buttonPodView.addSubview(btn)
+//                yPos = yPos + buttonHeight + 10
+//            }
+//
+//        }
+//        
+//        // Add an 'Add child button'
+//        let addChildButton: UIButton = UIButton(frame: CGRect(x: Int(xPos), y: yPos+10 , width: buttonWidth, height: buttonHeight))
+//        addChildButton.backgroundColor = UIColor.lightGray
+//        addChildButton.setTitle(NSLocalizedString("Add Child", comment: ""), for: .normal)
+//        addChildButton.addTarget(self, action: #selector(childButtonPressed), for: .touchUpInside)
+//        
+//        addChildButton.tag = 10
+//        addChildButton.layer.cornerRadius = 5
+//        buttonPodView.addSubview(addChildButton)
+//        
+//        //buttonPodView.contentSize = CGSize(width: buttonPodView.frame.size.width, height: CGFloat(yPos + 20))
+//
+//    }
     
     func createLookupTablesIfNotExist() {
         
@@ -211,7 +229,11 @@ class ChildSelectionVC: UIViewController {
             viewChild()
         }
     }
-    
+
+    @IBAction func addChildButtonPressed(_ sender: Any) {
+        addChild()
+    }
+
     // MARK: Button related methods
     
     func addChild () {
@@ -229,3 +251,73 @@ class ChildSelectionVC: UIViewController {
     
 
 }
+
+// MARK:  Extensions
+
+extension ChildSelectionVC : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return childProfiles.count
+    }
+    
+    private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return tableView.rowHeight
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let child = childProfiles[indexPath.row]
+        
+        let cell:ChildSelectionCell = self.childSelectionTableView.dequeueReusableCell(withIdentifier: "ChildSelectionCellID") as! ChildSelectionCell
+        
+        cell.outerView.layer.borderWidth = 1
+        cell.outerView.layer.borderColor = GlobalConstants.ButtonShading.ButtonBorderColor
+        cell.outerView.layer.cornerRadius = GlobalConstants.ButtonShading.ButtonCornerRadius
+        cell.outerView.clipsToBounds = true
+        cell.outerView.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
+        cell.childNameLabel.textColor = UIColor.white
+        cell.childNameLabel.text = child.firstname
+
+        // Colour shading
+        
+//        if (indexPath.row % 2 == 0) {
+//            cell.backgroundColor = GlobalConstants.TableViewAlternateShading.Darker
+//        }
+//        else {
+            cell.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
+//        }
+        
+        return cell
+    }
+    
+}
+
+// MARK: UITableViewDelegate
+extension ChildSelectionVC : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedChildProfile = childProfiles[indexPath.row]
+        viewChild()
+
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        
+//        selectedHeightToDelete = heights[indexPath.row]
+//        
+//        if editingStyle == .delete
+//        {
+//            askToRemoveHeight()
+//        }
+//    }
+    
+}
+
