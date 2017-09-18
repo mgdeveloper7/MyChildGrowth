@@ -20,6 +20,8 @@ class ButtonIconView: UIView {
     // MARK: Outlets
     
     var buttonLabel : UILabel!
+    var dummyButton : UIButton!
+
     var buttonIconOuterButton : UIButton!
     var buttonIcon : UIImageView!
     var tmp : UITextField!
@@ -40,8 +42,16 @@ class ButtonIconView: UIView {
         self.addSubview(padding)
         xPos = 7
         
-        /** Button Label */
+        /** Dummy Button (place a clear button over the label to user can click on it) */
         
+        dummyButton = UIButton(frame: CGRect(x: xPos, y: yPos , width: width, height: height))
+        dummyButton.backgroundColor = UIColor.white
+        dummyButton.addTarget(self, action: #selector(buttonIconPressed), for: UIControlEvents.touchUpInside)
+        
+        self.addSubview(dummyButton)
+        
+        /** Button Label */
+ 
         buttonLabel = UILabel(frame: CGRect(x: xPos, y: yPos , width: width, height: height))
         buttonLabel.backgroundColor = UIColor.white
         

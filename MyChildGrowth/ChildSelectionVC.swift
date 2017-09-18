@@ -13,6 +13,7 @@ class ChildSelectionVC: UIViewController {
     
     // MARK: Outlets
     
+    @IBOutlet weak var titleBar: UINavigationBar!
     @IBOutlet weak var titleBarNavItem: UINavigationItem!
     
     @IBOutlet weak var outerScreenImageView : UIImageView!
@@ -31,6 +32,15 @@ class ChildSelectionVC: UIViewController {
     
    // var selectedChildProfile = ChildProfile.
     
+    // MARK:  Menu
+    
+    enum Menu: String {
+        case ShowSettings = "App Settings"
+        case Upgrades = "Purchases"
+        case ShowAbout = "About"
+        case ShowCancel = "Cancel"
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -115,14 +125,14 @@ class ChildSelectionVC: UIViewController {
 //        buttonPodView.backgroundColor = GlobalConstants.TableViewAlternateShading.Lighter
 //        buttonPodView.alpha = GlobalConstants.ScreenShading.ViewBackgroundAlpha
 //        
-
+        setRightBarButtonImage()
         
     }
     
     func setRightBarButtonImage () {
         
-        customBarButtonAction.setImage(UIImage(named: "Menu"), for: UIControlState.normal)
- //       customBarButtonAction.addTarget(self, action: #selector(ParentWeatherVC.barBtnActionPressed(_:)), for: UIControlEvents.touchUpInside)
+        customBarButtonAction.setImage(UIImage(named: "menu-icon"), for: UIControlState.normal)
+        customBarButtonAction.addTarget(self, action: #selector(barBtnActionPressed(_:)), for: UIControlEvents.touchUpInside)
         //button.frame = CGRectMake(0, 0, 53, 31)
         customBarButtonAction.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         
@@ -249,6 +259,92 @@ class ChildSelectionVC: UIViewController {
     
     // MARK: Realm Related methous
     
+    @IBAction func barBtnActionPressed(_ sender: AnyObject) {
+        
+        let actionMenu = UIAlertController(title: "Menu", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        if let popover = actionMenu.popoverPresentationController{
+            
+            popover.barButtonItem = sender as? UIBarButtonItem
+            popover.permittedArrowDirections = UIPopoverArrowDirection.down
+            popover.popoverLayoutMargins = UIEdgeInsets(top: 10, left: 4, bottom: 10, right: 4)
+        }
+        
+//        actionMenu.addAction(compassViewAction)
+//        
+//        if (AppSettings.showThisTimeLastYear) {
+//            actionMenu.addAction(thisTimeLastYearAction)
+//        }
+//        
+//        if (AppSettings.showTimeline) {
+//            actionMenu.addAction(sunriseSunsetAction)
+//        }
+        
+        actionMenu.addAction(showSettingsAction)
+        actionMenu.addAction(upgradesAction)
+        actionMenu.addAction(showAboutAction)
+        // Adding Cancel allows user to click outside of menu to dismiss alert
+        actionMenu.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionMenu, animated: true, completion: nil)
+        
+    }
+    
+    // MARK:- Menu action methods
+    
+//    var compassViewAction: UIAlertAction {
+//        return UIAlertAction(title: Menu.CompassView.rawValue, style: .default, handler: { (alert) -> Void in
+//            
+//            DispatchQueue.main.async {
+//                self.performSegue(withIdentifier: "CompassViewSegue", sender: self)
+//            }
+//        })
+//    }
+//    
+//    var thisTimeLastYearAction: UIAlertAction {
+//        return UIAlertAction(title: Menu.ThisTimeLastYear.rawValue, style: .default, handler: { (alert) -> Void in
+//            
+//            DispatchQueue.main.async {
+//                self.performSegue(withIdentifier: "ThisTimeLastYearSegue", sender: self)
+//            }
+//        })
+//    }
+//    
+//    var sunriseSunsetAction: UIAlertAction {
+//        return UIAlertAction(title: Menu.SunriseSunset.rawValue, style: .default, handler: { (alert) -> Void in
+//            
+//            DispatchQueue.main.async {
+//                self.performSegue(withIdentifier: "sunriseSunsetSegue", sender: self)
+//            }
+//        })
+//    }
+    
+    var showSettingsAction: UIAlertAction {
+        return UIAlertAction(title: Menu.ShowSettings.rawValue, style: .default, handler: { (alert) -> Void in
+            
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "settingsScreenSegue", sender: self)
+            }
+        })
+    }
+    
+    var upgradesAction: UIAlertAction {
+        return UIAlertAction(title: Menu.Upgrades.rawValue, style: .default, handler: { (alert) -> Void in
+            
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "showUpgradesSegue", sender: self)
+            }
+        })
+    }
+    
+    var showAboutAction: UIAlertAction {
+        return UIAlertAction(title: Menu.ShowAbout.rawValue, style: .default, handler: { (alert) -> Void in
+            
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "aboutScreenSegue", sender: self)
+            }
+        })
+    }
 
 }
 

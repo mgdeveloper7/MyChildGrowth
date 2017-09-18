@@ -15,6 +15,9 @@ class HeightReviewListVC: UIViewController {
     @IBOutlet weak var titleBarNavItem: UINavigationItem!
     @IBOutlet weak var outerScreenImageView : UIImageView!
     @IBOutlet weak var outerChildDetailView : ChildNameView!
+    
+    @IBOutlet weak var growthSince : UILabel!
+
     @IBOutlet weak var enterHeightView : UIView!
     
     @IBOutlet weak var heightsTableView : UITableView!
@@ -29,6 +32,7 @@ class HeightReviewListVC: UIViewController {
         
         setupScreen()
         getHeightsForChild()
+        populateGrowthSinceTitle()
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,9 +68,30 @@ class HeightReviewListVC: UIViewController {
         // Child details and image
         outerChildDetailView.buildView(firstNameString: selectedChildProfile.firstname, lastNameString: selectedChildProfile.surname, sexString: selectedChildProfile.sex)
         
-
     }
     
+    func getMonthsAndYearsBetween(startDate : Date, endDate : Date) -> Int {
+        
+        let calendar = Calendar.current
+        let dateFormtter = DateFormatter()
+        
+        dateFormtter.dateFormat = "MMMM yyyy"
+        
+        // Create the matching conponent : day 1 of each month
+        let components = DateComponents(day: 1)
+        // The variable result will contain the array of month names,
+        var result = [dateFormtter.string(from: startDate)]
+        
+        // this particular method of Calendar enumerates each date matching the components
+        calendar.enumerateDates(startingAfter: startDate, matching: components, matchingPolicy: .nextTime) { (date, strict, stop) in
+            result.append(dateFormtter.string(from: date!))
+            // exit the enumeration if the end date is reached
+            if date! >= endDate { stop = true }
+        }
+        
+        return result.count
+    }
+
     func getHeightsForChild() {
         
         // TODO: Add to HeightHelper class
@@ -74,6 +99,24 @@ class HeightReviewListVC: UIViewController {
         let predicate = NSPredicate(format: "childProfileId == %@", selectedChildProfile.id)
         heights = try! Realm().objects(Height.self).filter(predicate)
         heights = heights!.sorted(byKeyPath: "dateMeasured", ascending: false)
+
+    }
+    
+    func populateGrowthSinceTitle() {
+        
+        // Add the date the first height was captured
+        
+        guard let firstMeasuredDate = heights.last?.dateMeasured else {
+            growthSince.text = "No previous heighs recorded"
+            return
+        }
+        
+        let monthSinceBirthday = getMonthsAndYearsBetween(startDate: selectedChildProfile.dateOfBirth! as Date, endDate: firstMeasuredDate as Date)
+        
+        let dateFormtter = DateFormatter()
+        dateFormtter.dateFormat = "dd/MM/yyyy"
+        
+        growthSince.text = "Growth since " + dateFormtter.string(from: firstMeasuredDate as Date) + " (Month " + String(monthSinceBirthday) + ")"
 
     }
     

@@ -44,6 +44,7 @@
 		C01876641F61F31D00CD77F3 /* ChildNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876631F61F31D00CD77F3 /* ChildNameView.swift */; };
 		C01876661F66921000CD77F3 /* UINavigationItem+SetTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876651F66921000CD77F3 /* UINavigationItem+SetTitle.swift */; };
 		C01876C81F6BF8DC00CD77F3 /* ChildSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876C71F6BF8DB00CD77F3 /* ChildSelectionCell.swift */; };
+		C01876D21F707F5E00CD77F3 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876D11F707F5D00CD77F3 /* AboutVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		C01876631F61F31D00CD77F3 /* ChildNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildNameView.swift; sourceTree = "<group>"; };
 		C01876651F66921000CD77F3 /* UINavigationItem+SetTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+SetTitle.swift"; sourceTree = "<group>"; };
 		C01876C71F6BF8DB00CD77F3 /* ChildSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildSelectionCell.swift; sourceTree = "<group>"; };
+		C01876D11F707F5D00CD77F3 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 		C006A2101F4DBC4000C4A982 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C01876D31F707FA700CD77F3 /* About */,
 				C01876541F5C71DB00CD77F3 /* Innoculations */,
 				C01876351F58689400CD77F3 /* Height */,
 				C006A2111F4DBC6000C4A982 /* Child Selection */,
@@ -291,6 +294,14 @@
 				C01876651F66921000CD77F3 /* UINavigationItem+SetTitle.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		C01876D31F707FA700CD77F3 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				C01876D11F707F5D00CD77F3 /* AboutVC.swift */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		E832DA972843A70B3EF38A92 /* Frameworks */ = {
@@ -446,6 +457,7 @@
 				C01876581F5D5CFC00CD77F3 /* InnoculationsTimePeriodCell.swift in Sources */,
 				C01876561F5C71FE00CD77F3 /* InnoculationsVC.swift in Sources */,
 				C006A1FF1F4DB99900C4A982 /* AppDelegate.swift in Sources */,
+				C01876D21F707F5E00CD77F3 /* AboutVC.swift in Sources */,
 				C01876291F5387DC00CD77F3 /* WeightSliderView.swift in Sources */,
 				C01876511F5BDA5B00CD77F3 /* VaccineDescriptionLookup.swift in Sources */,
 				C018765F1F6134E800CD77F3 /* String+Size.swift in Sources */,
