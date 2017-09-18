@@ -45,6 +45,7 @@
 		C01876661F66921000CD77F3 /* UINavigationItem+SetTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876651F66921000CD77F3 /* UINavigationItem+SetTitle.swift */; };
 		C01876C81F6BF8DC00CD77F3 /* ChildSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876C71F6BF8DB00CD77F3 /* ChildSelectionCell.swift */; };
 		C01876D21F707F5E00CD77F3 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876D11F707F5D00CD77F3 /* AboutVC.swift */; };
+		C01876D91F7081DA00CD77F3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01876D71F7081DA00CD77F3 /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		C01876651F66921000CD77F3 /* UINavigationItem+SetTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+SetTitle.swift"; sourceTree = "<group>"; };
 		C01876C71F6BF8DB00CD77F3 /* ChildSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildSelectionCell.swift; sourceTree = "<group>"; };
 		C01876D11F707F5D00CD77F3 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		C01876D81F7081DA00CD77F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				C006A2021F4DB99900C4A982 /* Main.storyboard */,
+				C01876D71F7081DA00CD77F3 /* Settings.storyboard */,
 			);
 			name = StoryBoards;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				C018762C1F56C80500CD77F3 /* Localizable.strings in Resources */,
 				C006A2061F4DB99900C4A982 /* Assets.xcassets in Resources */,
 				C006A2041F4DB99900C4A982 /* Main.storyboard in Resources */,
+				C01876D91F7081DA00CD77F3 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +502,14 @@
 				C018762D1F56C80500CD77F3 /* Base */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C01876D71F7081DA00CD77F3 /* Settings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C01876D81F7081DA00CD77F3 /* Base */,
+			);
+			name = Settings.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

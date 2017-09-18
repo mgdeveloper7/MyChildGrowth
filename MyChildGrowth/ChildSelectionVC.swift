@@ -341,7 +341,7 @@ class ChildSelectionVC: UIViewController {
         return UIAlertAction(title: Menu.ShowAbout.rawValue, style: .default, handler: { (alert) -> Void in
             
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "aboutScreenSegue", sender: self)
+                self.performSegue(withIdentifier: "AboutSegue", sender: self)
             }
         })
     }
