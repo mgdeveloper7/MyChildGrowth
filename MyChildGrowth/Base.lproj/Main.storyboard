@@ -169,6 +169,7 @@
                         <segue destination="rhE-wq-8ga" kind="show" identifier="AddChildSegue" id="sYZ-Yr-7WD"/>
                         <segue destination="YNt-ne-uBW" kind="show" identifier="ViewChildSegue" id="En6-Vj-Sfc"/>
                         <segue destination="pqO-uH-5pj" kind="show" identifier="AboutSegue" id="O7h-50-1xo"/>
+                        <segue destination="Lp4-dC-5xX" kind="show" identifier="SettingsSegue" id="xzn-gX-h3P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1349,7 +1350,15 @@
                 <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="Settings_AboutVC_ID" id="pqO-uH-5pj" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Okm-I6-CCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298" y="-693"/>
+            <point key="canvasLocation" x="341" y="-686"/>
+        </scene>
+        <!--Settings_SettingsVC_ID-->
+        <scene sceneID="kDk-yK-VTs">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="Settings_SettingsVC_ID" id="Lp4-dC-5xX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cY5-9L-Gq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="354" y="-618"/>
         </scene>
     </scenes>
     <resources>

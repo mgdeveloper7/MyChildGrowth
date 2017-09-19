@@ -52,7 +52,7 @@ class ChildSelectionVC: UIViewController {
         setupColourScheme()
         
         // Show the documents directory incase we need to debug
-        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let documentsUrl =  Utility.getDocumentsDirectoryURL() // FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         print(documentsUrl)
     }
     
@@ -323,7 +323,7 @@ class ChildSelectionVC: UIViewController {
         return UIAlertAction(title: Menu.ShowSettings.rawValue, style: .default, handler: { (alert) -> Void in
             
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "settingsScreenSegue", sender: self)
+                self.performSegue(withIdentifier: "SettingsSegue", sender: self)
             }
         })
     }
@@ -377,6 +377,9 @@ extension ChildSelectionVC : UITableViewDataSource {
         cell.outerView.backgroundColor = GlobalConstants.ButtonShading.ButtonBackgroundColor
         cell.childNameLabel.textColor = UIColor.white
         cell.childNameLabel.text = child.firstname
+        
+        cell.childIcon.image = UIImage(named: Utility.getChildIcon(sex: child.sex as NSString))
+
 
         // Colour shading
         

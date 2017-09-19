@@ -24,16 +24,7 @@ class ChildNameView: UIView {
 
         /** Child Image */
         
-        var imageName : String!
-        
-        if sexString == "Male" {
-            imageName = "boy-icon"
-        }
-        else {
-            imageName = "girl-icon"
-        }
-
-        let childImage = UIImage(named: imageName)
+        let childImage = UIImage(named: Utility.getChildIcon(sex: sexString as NSString))
         
         genderImage = UIImageView(frame: CGRect(x: xPos, y: yPos , width: 42, height: 42))
         genderImage.image = childImage

@@ -46,6 +46,8 @@
 		C01876C81F6BF8DC00CD77F3 /* ChildSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876C71F6BF8DB00CD77F3 /* ChildSelectionCell.swift */; };
 		C01876D21F707F5E00CD77F3 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876D11F707F5D00CD77F3 /* AboutVC.swift */; };
 		C01876D91F7081DA00CD77F3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01876D71F7081DA00CD77F3 /* Settings.storyboard */; };
+		C01876DB1F71394F00CD77F3 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876DA1F71394F00CD77F3 /* Utility.swift */; };
+		C01876DE1F71474D00CD77F3 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876DD1F71474D00CD77F3 /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		C01876C71F6BF8DB00CD77F3 /* ChildSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildSelectionCell.swift; sourceTree = "<group>"; };
 		C01876D11F707F5D00CD77F3 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		C01876D81F7081DA00CD77F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
+		C01876DA1F71394F00CD77F3 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		C01876DD1F71474D00CD77F3 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,7 @@
 		C006A2101F4DBC4000C4A982 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C01876DC1F71471B00CD77F3 /* Settings */,
 				C01876D31F707FA700CD77F3 /* About */,
 				C01876541F5C71DB00CD77F3 /* Innoculations */,
 				C01876351F58689400CD77F3 /* Height */,
@@ -258,6 +263,7 @@
 			children = (
 				C01876491F5BD84E00CD77F3 /* DataCreationHelper.swift */,
 				C01876521F5BE0E300CD77F3 /* RealmHelper.swift */,
+				C01876DA1F71394F00CD77F3 /* Utility.swift */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -305,6 +311,14 @@
 				C01876D11F707F5D00CD77F3 /* AboutVC.swift */,
 			);
 			name = About;
+			sourceTree = "<group>";
+		};
+		C01876DC1F71471B00CD77F3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C01876DD1F71474D00CD77F3 /* SettingsVC.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		E832DA972843A70B3EF38A92 /* Frameworks */ = {
@@ -457,6 +471,7 @@
 				C01876451F5A909300CD77F3 /* Utilities.swift in Sources */,
 				C006A2181F4DC0F600C4A982 /* GlobalConstants.swift in Sources */,
 				C01876301F56EB7100CD77F3 /* Conversions.swift in Sources */,
+				C01876DB1F71394F00CD77F3 /* Utility.swift in Sources */,
 				C01876531F5BE0E300CD77F3 /* RealmHelper.swift in Sources */,
 				C01876581F5D5CFC00CD77F3 /* InnoculationsTimePeriodCell.swift in Sources */,
 				C01876561F5C71FE00CD77F3 /* InnoculationsVC.swift in Sources */,
@@ -474,6 +489,7 @@
 				C01876C81F6BF8DC00CD77F3 /* ChildSelectionCell.swift in Sources */,
 				C018765A1F5D897D00CD77F3 /* InnoculationDescriptionCell.swift in Sources */,
 				C01876621F61353200CD77F3 /* CGPoint+Adding.swift in Sources */,
+				C01876DE1F71474D00CD77F3 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

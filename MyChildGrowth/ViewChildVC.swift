@@ -79,18 +79,8 @@ class ViewChildVC: UIViewController {
         self.firstname.text = selectedChildProfile.firstname
         self.surname.text = selectedChildProfile.surname
  
-        var imageName = ""
+        genderImage.image = UIImage(named: Utility.getChildIcon(sex: selectedChildProfile.sex as NSString))
 
-        if selectedChildProfile.sex == "Male" {
-            imageName = "boy-icon"
-        }
-        else {
-            imageName = "girl-icon"
-        }
-
-        let image = UIImage(named: imageName)
-        genderImage.image = image
-        
         if selectedChildProfile.dateOfBirth != nil {
             
             let formatter = DateFormatter()

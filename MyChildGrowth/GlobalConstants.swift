@@ -20,6 +20,17 @@ class GlobalConstants: NSObject {
         static var Light = "Light"
     }
     
+    struct Realm {
+        static var DefaultRealm = "default.realm"
+    }
+    
+    // Child Icons
+    
+    struct ChildIcon {
+        static var Boy = "boy-icon"
+        static var Girl = "girl-icon"
+    }
+    
 //    static var podDark = UIColor(red: 24/255, green: 25/255, blue: 26/255, alpha: 0.85)
 //    static var podLight = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.85)
 //    
@@ -37,6 +48,7 @@ class GlobalConstants: NSObject {
     struct ScreenShading {
         static var BackgroundImageAlpha = CGFloat(0.60)
         static var ViewBackgroundAlpha = CGFloat(0.90)
+        
        // static var MainBackgroundImageName = "newborn-baby-feet-basket-pexels"
         static var MainBackgroundImageName = "baby-boy-hat-covered-101537"
       //  static var MainBackgroundImageName = "bear-pexels-photo-272056"
@@ -57,6 +69,14 @@ class GlobalConstants: NSObject {
        // static var Dummy = UIColor(red: 130/255, green: 127/255, blue: 120/255, alpha: 1.0)
         static var Dummy = UIColor(red: 91/255, green: 81/255, blue: 51/255, alpha: 0.9)
     }
+
+    // URL's
+    // Ensure no spaces in URL
+    
+    static let SupportEmailAddress = "mgdeveloper7@gmail.com"
+    //static let DarkSkyURL = "https://darksky.net/poweredby/"
+    static let WeatherIconURL = "https://icons8.com"
+    static let WeatherPhotosURL = "https://www.pexels.com"
 
 
 }
