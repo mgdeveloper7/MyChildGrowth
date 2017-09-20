@@ -11,7 +11,7 @@ import UIKit
 class AppSettings: NSObject {
 
     static var ShowBannerAds = true    
-    static let BannerAdsTestMode = true    // Set this to TRUE to show test ads
+    static let BannerAdsTestMode = false    // Set this to TRUE to show test ads
     static let AdMobAppID = GlobalConstants.AdMobAppID
     static let AdMobBannerID = GlobalConstants.AdMobBannerID
     
