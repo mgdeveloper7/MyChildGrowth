@@ -14,6 +14,8 @@ class SettingsVC: UIViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var titleBarNavItem: UINavigationItem!
     @IBOutlet weak var outerScreenImageView : UIImageView!
     
+//    @IBOutlet weak var outerView: UIView!
+    
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var settingsView: UIView!
@@ -35,6 +37,7 @@ class SettingsVC: UIViewController, MFMailComposeViewControllerDelegate {
 
         // Do any additional setup after loading the view.
         setupScreen()
+        setupColourScheme()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,18 +57,46 @@ class SettingsVC: UIViewController, MFMailComposeViewControllerDelegate {
         
         settingsView.layer.cornerRadius = 10.0
         settingsView.clipsToBounds = true
+        settingsView.layer.borderWidth = 1
+        settingsView.layer.borderColor = UIColor.darkGray.cgColor
         
         metricsView.layer.cornerRadius = 10.0
         metricsView.clipsToBounds = true
         metricsView.layer.borderWidth = 1
-        metricsView.layer.borderColor = UIColor.darkGray.cgColor
+        metricsView.layer.borderColor = UIColor.lightGray.cgColor
         
         backupDataView.layer.cornerRadius = 10.0
         backupDataView.clipsToBounds = true
         backupDataView.layer.borderWidth = 1
-        backupDataView.layer.borderColor = UIColor.darkGray.cgColor
+        backupDataView.layer.borderColor = UIColor.lightGray.cgColor
 
     }
+    
+    func setupColourScheme() {
+        
+        // let colourScheme = Utility.setupColourScheme()
+        
+        let textColourScheme = UIColor.black // colourScheme.textColourScheme
+        let podColourScheme = GlobalConstants.TableViewAlternateShading.Lighter
+        // colourScheme.podColourScheme
+        
+        // Labels
+        metricsLabel.textColor = textColourScheme
+        weightLabel.textColor = textColourScheme
+        heightLabel.textColor = textColourScheme
+        backupLabel.textColor = textColourScheme
+        
+        // Pods
+        settingsView.backgroundColor = GlobalConstants.TableViewAlternateShading.Darker
+        metricsView.backgroundColor = podColourScheme
+        backupDataView.backgroundColor = podColourScheme
+        
+        settingsView.alpha = CGFloat(GlobalConstants.ScreenShading.ViewBackgroundAlpha)
+        metricsView.alpha = CGFloat(GlobalConstants.ScreenShading.ViewBackgroundAlpha)
+        backupDataView.alpha = CGFloat(GlobalConstants.ScreenShading.ViewBackgroundAlpha)
+    
+    }
+
 
     // MARK:  Button Methods
     @IBAction func backButtonPressed(_ sender: AnyObject) {
