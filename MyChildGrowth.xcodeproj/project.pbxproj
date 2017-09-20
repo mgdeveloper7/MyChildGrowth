@@ -48,6 +48,8 @@
 		C01876D91F7081DA00CD77F3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C01876D71F7081DA00CD77F3 /* Settings.storyboard */; };
 		C01876DB1F71394F00CD77F3 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876DA1F71394F00CD77F3 /* Utility.swift */; };
 		C01876DE1F71474D00CD77F3 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01876DD1F71474D00CD77F3 /* SettingsVC.swift */; };
+		C083DD521F7262490063EEC5 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C083DD511F7262490063EEC5 /* AppSettings.swift */; };
+		C083DD541F72678C0063EEC5 /* BannerAdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C083DD531F72678C0063EEC5 /* BannerAdHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,8 @@
 		C01876D81F7081DA00CD77F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		C01876DA1F71394F00CD77F3 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		C01876DD1F71474D00CD77F3 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		C083DD511F7262490063EEC5 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		C083DD531F72678C0063EEC5 /* BannerAdHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +203,7 @@
 		C006A2161F4DC0C300C4A982 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				C083DD511F7262490063EEC5 /* AppSettings.swift */,
 				C006A2171F4DC0F600C4A982 /* GlobalConstants.swift */,
 				C018762F1F56EB7100CD77F3 /* Conversions.swift */,
 				C01876441F5A909300CD77F3 /* Utilities.swift */,
@@ -264,6 +269,7 @@
 				C01876491F5BD84E00CD77F3 /* DataCreationHelper.swift */,
 				C01876521F5BE0E300CD77F3 /* RealmHelper.swift */,
 				C01876DA1F71394F00CD77F3 /* Utility.swift */,
+				C083DD531F72678C0063EEC5 /* BannerAdHelper.swift */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -469,9 +475,11 @@
 				C018764A1F5BD84E00CD77F3 /* DataCreationHelper.swift in Sources */,
 				C006A21B1F4F03AA00C4A982 /* AddChildVC.swift in Sources */,
 				C01876451F5A909300CD77F3 /* Utilities.swift in Sources */,
+				C083DD521F7262490063EEC5 /* AppSettings.swift in Sources */,
 				C006A2181F4DC0F600C4A982 /* GlobalConstants.swift in Sources */,
 				C01876301F56EB7100CD77F3 /* Conversions.swift in Sources */,
 				C01876DB1F71394F00CD77F3 /* Utility.swift in Sources */,
+				C083DD541F72678C0063EEC5 /* BannerAdHelper.swift in Sources */,
 				C01876531F5BE0E300CD77F3 /* RealmHelper.swift in Sources */,
 				C01876581F5D5CFC00CD77F3 /* InnoculationsTimePeriodCell.swift in Sources */,
 				C01876561F5C71FE00CD77F3 /* InnoculationsVC.swift in Sources */,
