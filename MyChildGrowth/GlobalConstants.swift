@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class GlobalConstants: NSObject {
 
@@ -77,6 +78,25 @@ class GlobalConstants: NSObject {
     //static let DarkSkyURL = "https://darksky.net/poweredby/"
     static let WeatherIconURL = "https://icons8.com"
     static let WeatherPhotosURL = "https://www.pexels.com"
+
+    // MARK:  Banner Ad related
+    
+    // Get Started:  https://firebase.google.com/docs/admob/ios/quick-start
+    
+    struct BannerAdTestIDs {
+        // List of devices used whilst testing, in order to see test banner ads
+        static let IPhone6 = "d908ab2aa2246c48dd031abe26ac03f5"
+        static let Simulator = kGADSimulatorID
+    }
+    
+    static let AdMobAppID = "ca-app-pub-7564315004238579~6456081731"
+    static let AdMobBannerID = "ca-app-pub-7564315004238579/4667469297"
+//    
+//    static let TestAdMobAppID = "ca-app-pub-3940256099942544~1458002511"
+//    static let TestAdMobBannerID = "ca-app-pub-3940256099942544/2934735716"
+    
+    //  How often banner ads are shown on some screens (e.g 3 means display ads once every 3 times)
+    static let BannerAdDisplayFrequency = 3
 
 
 }
