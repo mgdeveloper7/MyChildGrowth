@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class ViewChildVC: UIViewController {
+class ViewChildVC: UIViewController, GADBannerViewDelegate {
 
     // MARK: Outlets
     
@@ -27,15 +28,37 @@ class ViewChildVC: UIViewController {
     @IBOutlet weak var heightEntryButton : UIButton!
     @IBOutlet weak var weightEntryButton : UIButton!
 
+    // The banner views.
+    @IBOutlet weak var bannerOuterView: UIView!
+    @IBOutlet weak var closeBannerButton : UIButton!
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     var selectedChildProfile = ChildProfile()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        bannerOuterView.isHidden = true
         setupScreen()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if AppSettings.ShowBannerAds {
+            
+            // For this screen we only want to randomly show the banner ad, so thats its an
+            // occasional annoyance
+            bannerOuterView.isHidden = true
+            let rand = Int(arc4random_uniform(4))
+            if (rand % GlobalConstants.BannerAdDisplayFrequency == 0) {
+                loadBannerAd()
+                bannerOuterView.isHidden = false
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -121,6 +144,16 @@ class ViewChildVC: UIViewController {
 
     }
     
+    // MARK:  Banner Ad Methods
+    
+    func loadBannerAd() {
+        
+        bannerView.delegate = self
+        bannerView.adUnitID = AppSettings.AdMobBannerID
+        bannerView.rootViewController = self
+        bannerView.load(BannerAdHelper.getGADRequest())
+    }
+    
     // MARK:  Button Methods
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         // Dismiss view
@@ -142,4 +175,21 @@ class ViewChildVC: UIViewController {
     @IBAction func weightButtonPressed(_ sender: AnyObject) {
         
     }
+    
+    @IBAction func closeBannerAdButtonPressed(_ sender: AnyObject) {
+        
+        // Dismiss banner ad view
+        bannerOuterView.isHidden = true
+    }
+    
+    // MARK:  GADBannerViewDelegate methods
+    
+    // Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Ad has been received")
+        
+        // show the delete ad button
+        closeBannerButton.isHidden = false
+    }
+
 }

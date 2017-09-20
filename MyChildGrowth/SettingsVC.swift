@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 import MessageUI
 
 class SettingsVC: UIViewController, MFMailComposeViewControllerDelegate {
@@ -32,12 +33,25 @@ class SettingsVC: UIViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var backupEmail: UITextField!
     @IBOutlet weak var backupButton: UIButton!
   
+    /// The banner view.
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setupScreen()
         setupColourScheme()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if AppSettings.ShowBannerAds {
+            loadBannerAd()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,6 +109,15 @@ class SettingsVC: UIViewController, MFMailComposeViewControllerDelegate {
         metricsView.alpha = CGFloat(GlobalConstants.ScreenShading.ViewBackgroundAlpha)
         backupDataView.alpha = CGFloat(GlobalConstants.ScreenShading.ViewBackgroundAlpha)
     
+    }
+
+    // MARK:  Banner Ad Methods
+    
+    func loadBannerAd() {
+        
+        bannerView.adUnitID = AppSettings.AdMobBannerID
+        bannerView.rootViewController = self
+        bannerView.load(BannerAdHelper.getGADRequest())
     }
 
 

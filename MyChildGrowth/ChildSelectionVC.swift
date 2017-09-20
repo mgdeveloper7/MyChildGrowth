@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import GoogleMobileAds
 import RealmSwift
 
-class ChildSelectionVC: UIViewController {
+class ChildSelectionVC: UIViewController, GADBannerViewDelegate {
     
     // MARK: Outlets
     
@@ -24,6 +25,11 @@ class ChildSelectionVC: UIViewController {
     @IBOutlet weak var addChildButton : UIButton!
     @IBOutlet weak var childSelectionTableView : UITableView!
 
+    // The banner views.
+    @IBOutlet weak var bannerOuterView: UIView!
+    @IBOutlet weak var closeBannerButton : UIButton!
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     // Custom outlets
     let customBarButtonAction = UIButton(type: .custom)
 
@@ -48,6 +54,8 @@ class ChildSelectionVC: UIViewController {
         
         createLookupTablesIfNotExist()
         
+        bannerOuterView.isHidden = true
+        
         setupScreen()
         setupColourScheme()
         
@@ -57,7 +65,19 @@ class ChildSelectionVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
+        super.viewWillAppear(animated)
+        
+        if AppSettings.ShowBannerAds {
+            
+            // For this screen we only want to randomly show the banner ad, so thats its an
+            // occasional annoyance
+            bannerOuterView.isHidden = true
+            let rand = Int(arc4random_uniform(4))
+            if (rand % GlobalConstants.BannerAdDisplayFrequency == 0) {
+                loadBannerAd()
+                bannerOuterView.isHidden = false
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -158,6 +178,17 @@ class ChildSelectionVC: UIViewController {
         
     }
     
+    // MARK:  Banner Ad Methods
+    
+    func loadBannerAd() {
+        
+        bannerView.delegate = self
+        bannerView.adUnitID = AppSettings.AdMobBannerID
+        bannerView.rootViewController = self
+        bannerView.load(BannerAdHelper.getGADRequest())
+    }
+
+    
 //    func createChildButtons () {
 //    
 //        let buttonWidth = 150
@@ -238,6 +269,12 @@ class ChildSelectionVC: UIViewController {
             selectedChildProfile = childProfiles[btnSendTag.tag]
             viewChild()
         }
+    }
+
+    @IBAction func closeBannerAdButtonPressed(_ sender: AnyObject) {
+        
+        // Dismiss banner ad view
+        bannerOuterView.isHidden = true
     }
 
     @IBAction func addChildButtonPressed(_ sender: Any) {
@@ -344,6 +381,16 @@ class ChildSelectionVC: UIViewController {
                 self.performSegue(withIdentifier: "AboutSegue", sender: self)
             }
         })
+    }
+
+    // MARK:  GADBannerViewDelegate methods
+    
+    // Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Ad has been received")
+        
+        // show the delete ad button
+        closeBannerButton.isHidden = false
     }
 
 }

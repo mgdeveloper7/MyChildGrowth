@@ -96,7 +96,7 @@ class GlobalConstants: NSObject {
 //    static let TestAdMobBannerID = "ca-app-pub-3940256099942544/2934735716"
     
     //  How often banner ads are shown on some screens (e.g 3 means display ads once every 3 times)
-    static let BannerAdDisplayFrequency = 3
+    static let BannerAdDisplayFrequency = 1
 
 
 }

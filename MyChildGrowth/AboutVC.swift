@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class AboutVC: UIViewController {
 
@@ -34,7 +35,7 @@ class AboutVC: UIViewController {
     @IBOutlet weak var changeLogButton: UIButton!
     
     /// The banner view.
-//    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: GADBannerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,16 @@ class AboutVC: UIViewController {
         // Do any additional setup after loading the view.
         setupScreen()
         setupColourScheme()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if AppSettings.ShowBannerAds {
+            loadBannerAd()
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -140,7 +151,15 @@ class AboutVC: UIViewController {
         
     }
 
+    // MARK:  Banner Ad Methods
     
+    func loadBannerAd() {
+        
+        bannerView.adUnitID = AppSettings.AdMobBannerID
+        bannerView.rootViewController = self
+        bannerView.load(BannerAdHelper.getGADRequest())
+    }
+
     // MARK:  Button Methods
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         // Dismiss view

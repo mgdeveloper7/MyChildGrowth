@@ -205,7 +205,7 @@
                                     <constraint firstAttribute="bottom" secondItem="qU3-SQ-oWH" secondAttribute="bottom" constant="14" id="ugv-Oc-XyF"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WD6-pG-4MD">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WD6-pG-4MD" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -244,6 +244,7 @@
                         <outlet property="aboutTitle" destination="TrX-bX-AWL" id="1ic-cX-Tc2"/>
                         <outlet property="aboutVersion" destination="9ih-8w-chM" id="4G1-zH-P8Y"/>
                         <outlet property="aboutView" destination="4b5-9N-1Kg" id="18R-et-JbK"/>
+                        <outlet property="bannerView" destination="WD6-pG-4MD" id="pCx-gC-Zmv"/>
                         <outlet property="creditsTitle" destination="ZT6-eG-llg" id="8ef-Z0-4NT"/>
                         <outlet property="creditsView" destination="9SK-8I-3RQ" id="YON-O0-ToF"/>
                         <outlet property="emailButton" destination="ZT1-cb-aMf" id="zkq-4H-kQn"/>
@@ -435,7 +436,7 @@
                                     <constraint firstItem="4Hr-df-Lel" firstAttribute="top" secondItem="mPq-bd-LCO" secondAttribute="top" constant="16" id="vmd-z4-Xwe"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6j-q7-c7M">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6j-q7-c7M" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -468,6 +469,7 @@
                         <outlet property="backupDataView" destination="NEk-XX-OCW" id="Kc7-2L-1KV"/>
                         <outlet property="backupEmail" destination="JFE-pb-syv" id="diP-hJ-I4e"/>
                         <outlet property="backupLabel" destination="f8g-WU-NF8" id="lbc-LU-jo7"/>
+                        <outlet property="bannerView" destination="N6j-q7-c7M" id="H2e-SL-cdd"/>
                         <outlet property="heightLabel" destination="VWU-Dx-ClY" id="pUy-Ke-kDC"/>
                         <outlet property="heightSegmentedControl" destination="C3M-4f-BEy" id="bnw-zN-8pq"/>
                         <outlet property="metricsLabel" destination="4IU-hs-Me7" id="cav-Sf-DuQ"/>
