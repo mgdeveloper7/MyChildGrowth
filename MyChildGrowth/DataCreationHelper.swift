@@ -260,17 +260,49 @@ class DataCreationHelper: NSObject {
     
     // Demo Data creation
     
-    func createChildProfileDemoTable() {
-        
-    }
+//    func createChildProfileDemoTable() {
+//        
+//    }
+//
+//    func createHeightDemoTable() {
+//        
+//    }
+//    
+//    func createWeightDemoTable() {
+//        
+//    }
 
-    func createHeightDemoTable() {
+
+    // MARK:  Restore Realm file
+    
+    func importRealmBackupFile(fileURL : URL) {
+        
+        // Copy the file to the documents directory
+         let copyToDirectory = Utility.getDocumentsDirectoryURL().path + "/" + GlobalConstants.Realm.DefaultRealm
+        
+        let fileManager = FileManager.default
+        
+        // Check if file exists, given its path.
+        // If it does, remove it before importing the file
+        
+        if fileManager.fileExists(atPath: copyToDirectory) {
+            do {
+                try fileManager.removeItem(atPath: copyToDirectory)
+            }
+            catch let error as NSError {
+                print("Error removing old default.realm: \(error)")
+                Utility.showMessage(titleString: "Import error", messageString: "There was a problem removing old configuration file, please try again later.")
+            }
+        }
+        
+        do {
+            try fileManager.copyItem(atPath: fileURL.path, toPath: copyToDirectory)
+        }
+        catch let error as NSError {
+            print("Error importing new default.realm: \(error)")
+            Utility.showMessage(titleString: "Import error", messageString: "There was a problem copying new configuration file, please try again later.")
+        }
         
     }
     
-    func createWeightDemoTable() {
-        
-    }
-
-
 }
