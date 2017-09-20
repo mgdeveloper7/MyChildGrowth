@@ -39,15 +39,35 @@
 			<string>None</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string></string>
+                <string>com.MGSoft.MyChildGrowth.mcg</string>
 			</array>
 		</dict>
 	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+    <key>UTExportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.data</string>
+            </array>
+            <key>UTTypeDescription</key>
+            <string>MyChildGrowth Import File</string>
+            <key>UTTypeIdentifier</key>
+            <string>com.MGSoft.MyChildGrowth.mcg</string>
+            <key>UTTypeTagSpecification</key>
+            <dict>
+                <key>public.filename-extension</key>
+                <string>mcg</string>
+                <key>public.mime-type</key>
+                <string>text/json</string>
+            </dict>
+        </dict>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
 </dict>
 </plist>
